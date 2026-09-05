@@ -1,0 +1,10 @@
+const $=s=>document.querySelector(s);const pages=[...document.querySelectorAll('.page')];const show=n=>pages.forEach((p,i)=>p.classList.toggle('active',i===n));const birthday=$('#birthdayAudio'),kumki=$('#kumkiAudio'),video=$('#breakVideo');
+$('#startBtn').onclick=()=>{birthday.currentTime=0;birthday.play().catch(()=>{});setTimeout(()=>{show(1);birthday.pause()},1400)};
+const wrap=$('.scroll-wrap'),ribbon=$('#ribbon');let dragging=false,startY=0,startTop=0;
+function begin(e){dragging=true;ribbon.classList.add('dragging');startY=(e.touches?e.touches[0].clientY:e.clientY);startTop=parseFloat(getComputedStyle(ribbon).top)}
+function move(e){if(!dragging)return;const y=e.touches?e.touches[0].clientY:e.clientY;const d=y-startY;ribbon.style.top=Math.max(12,Math.min(wrap.clientHeight-150,startTop+d))}
+function end(){if(!dragging)return;dragging=false;ribbon.classList.remove('dragging');if(parseFloat(ribbon.style.top||0)>wrap.clientHeight*.28){wrap.classList.remove('collapsed');wrap.classList.add('open');$('#instruction').textContent='THE LETTER IS OPEN ❤️';kumki.play().catch(()=>{})}}
+ribbon.addEventListener('mousedown',begin);window.addEventListener('mousemove',move);window.addEventListener('mouseup',end);ribbon.addEventListener('touchstart',begin,{passive:true});window.addEventListener('touchmove',move,{passive:true});window.addEventListener('touchend',end);
+$('#nextBtn').onclick=()=>{kumki.pause();kumki.currentTime=0;show(2);$('#countdown').textContent='5';let n=5;const t=setInterval(()=>{n--;$('#countdown').textContent=n;if(n<=0){clearInterval(t);$('#countdown').style.display='none';document.querySelector('#page3').classList.add('page3play');video.play().catch(()=>{})}},1000)};
+video.onended=()=>{show(3);setTimeout(()=>{$('#miss').style.display='none';$('#finalWish').style.opacity=1;setTimeout(()=>{$('#finalWish').style.opacity=0;$('#lockScene').style.opacity=1;document.body.classList.add('locked')},2600)},5000)};
+wrap.classList.add('collapsed');
