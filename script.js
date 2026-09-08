@@ -3,14 +3,12 @@ const pages=[...document.querySelectorAll('.page')];
 const show=n=>pages.forEach((p,i)=>p.classList.toggle('active',i===n));
 const birthday=$('#birthdayAudio'),kumki=$('#kumkiAudio'),video=$('#breakVideo');
 
-// Start the opening sequence immediately when the site loads.
 let introStarted=false;
 const startIntro=()=>{
   if(introStarted)return;
   introStarted=true;
   birthday.currentTime=0;
   birthday.play().catch(()=>{});
-
   let n=5;
   const number=$('#countNumber');
   number.textContent=n;
@@ -24,22 +22,21 @@ const startIntro=()=>{
     }
   },1000);
 };
-
 window.addEventListener('load',startIntro);
+document.addEventListener('click',()=>{if(birthday.paused)birthday.play().catch(()=>{});if(!introStarted)startIntro();});
 
-// Clicking anywhere is also a fallback for browsers that block autoplay.
-document.addEventListener('click',()=>{
-  if(birthday.paused) birthday.play().catch(()=>{});
-  if(!introStarted) startIntro();
-},{once:false});
-
-// After the birthday MP3 finishes, automatically open the letter page.
 birthday.addEventListener('ended',()=>{
+  $('#nextPagePrompt').classList.remove('hidden');
+  $('#nextPagePrompt').classList.add('show');
+});
+
+$('#nextPagePrompt').onclick=()=>{
+  $('#nextPagePrompt').classList.remove('show');
   show(1);
   kumki.currentTime=0;
   kumki.volume=1;
   kumki.play().catch(()=>{});
-},{once:true});
+};
 
 $('#nextBtn').onclick=()=>{
   kumki.pause();
