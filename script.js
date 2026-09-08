@@ -13,30 +13,25 @@ const startIntro=()=>{
   countdown.classList.add('fadeout');
   title.classList.remove('hidden');
   prompt.classList.add('show');
+  birthday.currentTime=0;
+  birthday.volume=1;
+  birthday.play().catch(()=>{});
 };
 window.addEventListener('load',startIntro);
 
 $('#nextPagePrompt').onclick=()=>{
-  $('#nextPagePrompt').classList.remove('show');
+  birthday.pause();
   birthday.currentTime=0;
-  birthday.volume=1;
-  birthday.play().catch(()=>{});
+  $('#nextPagePrompt').classList.remove('show');
   show(1);
-};
-
-birthday.onended=()=>{
-  if($('#page2').classList.contains('active')){
-    kumki.currentTime=0;
-    kumki.volume=1;
-    kumki.play().catch(()=>{});
-  }
+  kumki.currentTime=0;
+  kumki.volume=1;
+  kumki.play().catch(()=>{});
 };
 
 $('#nextBtn').onclick=()=>{
   kumki.pause();
   kumki.currentTime=0;
-  birthday.pause();
-  birthday.currentTime=0;
   show(2);
   $('#countdown').textContent='5';
   $('#countdown').style.display='block';
