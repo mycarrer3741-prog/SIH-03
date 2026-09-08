@@ -7,8 +7,6 @@ let introStarted=false;
 const startIntro=()=>{
   if(introStarted)return;
   introStarted=true;
-  birthday.currentTime=0;
-  birthday.play().catch(()=>{});
   let n=5;
   const number=$('#countNumber');
   number.textContent=n;
@@ -18,12 +16,17 @@ const startIntro=()=>{
     if(n<=0){
       clearInterval(timer);
       $('#introCountdown').classList.add('fadeout');
+      birthday.currentTime=0;
+      birthday.play().catch(()=>{});
       setTimeout(()=>$('#birthdayTitle').classList.remove('hidden'),500);
     }
   },1000);
 };
 window.addEventListener('load',startIntro);
-document.addEventListener('click',()=>{if(birthday.paused)birthday.play().catch(()=>{});if(!introStarted)startIntro();});
+document.addEventListener('click',()=>{
+  if(birthday.paused && $('#page1').classList.contains('active'))birthday.play().catch(()=>{});
+  if(!introStarted)startIntro();
+});
 
 birthday.addEventListener('ended',()=>{
   $('#nextPagePrompt').classList.remove('hidden');
