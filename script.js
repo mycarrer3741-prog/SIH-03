@@ -3,6 +3,9 @@ const pages=[...document.querySelectorAll('.page')];
 const show=n=>pages.forEach((p,i)=>p.classList.toggle('active',i===n));
 const birthday=$('#birthdayAudio'),kumki=$('#kumkiAudio'),video=$('#breakVideo');
 
+birthday.loop=true;
+kumki.loop=true;
+
 let introStarted=false;
 const startIntro=()=>{
   if(introStarted)return;
