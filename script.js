@@ -3,20 +3,25 @@ const pages=[...document.querySelectorAll('.page')];
 const show=n=>pages.forEach((p,i)=>p.classList.toggle('active',i===n));
 const birthday=$('#birthdayAudio'),kumki=$('#kumkiAudio'),video=$('#breakVideo');
 
+// Try autoplay on first page. If the browser blocks it, the OPEN click starts it.
+birthday.currentTime=0;
+birthday.play().catch(()=>{});
+
 $('#startBtn').onclick=()=>{
   birthday.currentTime=0;
   birthday.play().catch(()=>{});
+  $('#startBtn').disabled=true;
+  $('#startBtn').textContent='♪ PLAYING...';
 
-  // Start Kumki from the same user click so Chrome allows playback.
-  kumki.currentTime=0;
-  kumki.volume=0;
-  kumki.play().catch(()=>{});
-
-  setTimeout(()=>{
+  // Move to the letter only after the birthday song finishes.
+  const goToLetter=()=>{
+    birthday.removeEventListener('ended',goToLetter);
     show(1);
-    birthday.pause();
+    kumki.currentTime=0;
     kumki.volume=1;
-  },1400);
+    kumki.play().catch(()=>{});
+  };
+  birthday.addEventListener('ended',goToLetter);
 };
 
 $('#nextBtn').onclick=()=>{
