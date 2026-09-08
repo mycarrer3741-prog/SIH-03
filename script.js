@@ -7,30 +7,17 @@ let introStarted=false;
 const startIntro=()=>{
   if(introStarted)return;
   introStarted=true;
-  let n=5;
-  const number=$('#countNumber');
-  number.textContent=n;
-  const timer=setInterval(()=>{
-    n--;
-    number.textContent=n;
-    if(n<=0){
-      clearInterval(timer);
-      $('#introCountdown').classList.add('fadeout');
-      birthday.currentTime=0;
-      birthday.play().catch(()=>{});
-      setTimeout(()=>$('#birthdayTitle').classList.remove('hidden'),500);
-    }
-  },1000);
+  const countdown=$('#introCountdown');
+  const title=$('#birthdayTitle');
+  const prompt=$('#nextPagePrompt');
+  countdown.classList.add('fadeout');
+  title.classList.remove('hidden');
+  prompt.classList.add('show');
 };
 window.addEventListener('load',startIntro);
 document.addEventListener('click',()=>{
   if(birthday.paused && $('#page1').classList.contains('active'))birthday.play().catch(()=>{});
   if(!introStarted)startIntro();
-});
-
-birthday.addEventListener('ended',()=>{
-  $('#nextPagePrompt').classList.remove('hidden');
-  $('#nextPagePrompt').classList.add('show');
 });
 
 $('#nextPagePrompt').onclick=()=>{
