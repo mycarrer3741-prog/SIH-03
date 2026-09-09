@@ -12,13 +12,15 @@ function makeConfetti(){
   const shapes=['●','■','◆','✦','▲','★'];
   for(let i=0;i<140;i++){
     const el=document.createElement('i');
+    const fromLeft=i%2===0;
     el.className='confetti-piece';
     el.textContent=shapes[i%shapes.length];
     el.style.color=colors[i%colors.length];
-    const side=i%2===0?'left':'right';
-    el.style.setProperty('--side',side);
-    el.style.setProperty('--x',`${(Math.random()*38+8)}vw`);
-    el.style.setProperty('--y',`${-(Math.random()*55+15)}vh`);
+    el.style.left=fromLeft?'0%':'100%';
+    el.style.top=`${18+Math.random()*42}%`;
+    el.style.setProperty('--dir',fromLeft?'1':'-1');
+    el.style.setProperty('--x',`${Math.random()*42+18}vw`);
+    el.style.setProperty('--y',`${-(Math.random()*42+12)}vh`);
     el.style.setProperty('--r',`${(Math.random()-.5)*1200}deg`);
     el.style.fontSize=`${10+Math.random()*18}px`;
     el.style.animationDelay=`${Math.random()*.35}s`;
