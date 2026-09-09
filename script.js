@@ -8,16 +8,20 @@ let introStarted=false,letterTimer=null;
 function makeConfetti(){
   const box=$('#confettiLayer');
   box.innerHTML='';
-  const symbols=['●','■','◆','✦','▲'];
-  for(let i=0;i<90;i++){
+  const colors=['#ff1744','#ff4081','#ffeb3b','#00e5ff','#76ff03','#ff9100','#d500f9','#ffffff'];
+  const shapes=['●','■','◆','✦','▲','★'];
+  for(let i=0;i<140;i++){
     const el=document.createElement('i');
     el.className='confetti-piece';
-    el.textContent=symbols[i%symbols.length];
-    el.style.setProperty('--x',`${(Math.random()-.5)*110}vw`);
-    el.style.setProperty('--y',`${(Math.random()-.35)*85}vh`);
-    el.style.setProperty('--r',`${(Math.random()-.5)*900}deg`);
-    el.style.fontSize=`${7+Math.random()*12}px`;
-    el.style.animationDelay=`${Math.random()*.18}s`;
+    el.textContent=shapes[i%shapes.length];
+    el.style.color=colors[i%colors.length];
+    const side=i%2===0?'left':'right';
+    el.style.setProperty('--side',side);
+    el.style.setProperty('--x',`${(Math.random()*38+8)}vw`);
+    el.style.setProperty('--y',`${-(Math.random()*55+15)}vh`);
+    el.style.setProperty('--r',`${(Math.random()-.5)*1200}deg`);
+    el.style.fontSize=`${10+Math.random()*18}px`;
+    el.style.animationDelay=`${Math.random()*.35}s`;
     box.appendChild(el);
   }
   box.classList.remove('burst');
