@@ -11,6 +11,7 @@ function makeConfetti(){
   const symbols=['●','■','◆','✦','▲'];
   for(let i=0;i<90;i++){
     const el=document.createElement('i');
+    el.className='confetti-piece';
     el.textContent=symbols[i%symbols.length];
     el.style.setProperty('--x',`${(Math.random()-.5)*110}vw`);
     el.style.setProperty('--y',`${(Math.random()-.35)*85}vh`);
@@ -24,23 +25,44 @@ function makeConfetti(){
   box.classList.add('burst');
 }
 
-const startIntro=()=>{
+function startIntro(){
   if(introStarted)return;
   introStarted=true;
-  const countdown=$('#introCountdown'),title=$('#birthdayTitle'),prompt=$('#nextPagePrompt'),tap=$('#tapToStart');
+  const countdown=$('#introCountdown');
+  const title=$('#birthdayTitle');
+  const prompt=$('#nextPagePrompt');
+  const tap=$('#tapToStart');
+  const text='HAPPY BIRTHDAY MITHRA';
+
+  if(letterTimer)clearInterval(letterTimer);
   countdown.classList.add('fadeout');
-  title.classList.remove('hidden');title.textContent='';prompt.classList.remove('show');
+  title.classList.remove('hidden');
+  title.style.visibility='visible';
+  title.style.opacity='1';
+  title.textContent='';
+  prompt.classList.remove('show');
   if(tap)tap.classList.add('hide');
-  const text='HAPPY BIRTHDAY MITHRA';let i=0;
-  letterTimer=setInterval(()=>{
-    title.textContent=text.slice(0,++i);
-    if(i>=text.length){
-      clearInterval(letterTimer);letterTimer=null;
-      setTimeout(()=>{makeConfetti();setTimeout(()=>prompt.classList.add('show'),1300)},300);
+
+  birthday.currentTime=0;
+  birthday.volume=1;
+  birthday.play().catch(()=>{});
+
+  let i=0;
+  const typeNext=()=>{
+    i++;
+    title.textContent=text.slice(0,i);
+    if(i<text.length){
+      letterTimer=setTimeout(typeNext,180);
+    }else{
+      letterTimer=null;
+      setTimeout(()=>{
+        makeConfetti();
+        setTimeout(()=>prompt.classList.add('show'),1400);
+      },350);
     }
-  },170);
-  birthday.currentTime=0;birthday.volume=1;birthday.play().catch(()=>{});
-};
+  };
+  typeNext();
+}
 
 window.addEventListener('load',()=>{
   const tap=$('#tapToStart');
@@ -49,15 +71,44 @@ window.addEventListener('load',()=>{
 document.addEventListener('pointerdown',startIntro,{once:true});
 
 $('#nextPagePrompt').onclick=()=>{
-  birthday.pause();birthday.currentTime=0;$('#nextPagePrompt').classList.remove('show');show(1);
-  kumki.currentTime=0;kumki.volume=1;kumki.play().catch(()=>{});
+  birthday.pause();
+  birthday.currentTime=0;
+  $('#nextPagePrompt').classList.remove('show');
+  show(1);
+  kumki.currentTime=0;
+  kumki.volume=1;
+  kumki.play().catch(()=>{});
 };
 
 $('#nextBtn').onclick=()=>{
-  kumki.pause();kumki.currentTime=0;show(2);$('#countdown').textContent='5';$('#countdown').style.display='block';
-  let n=5;const t=setInterval(()=>{n--;$('#countdown').textContent=n;if(n<=0){clearInterval(t);$('#countdown').style.display='none';document.querySelector('#page3').classList.add('page3play');video.currentTime=0;video.play().catch(()=>{});}},1000);
+  kumki.pause();
+  kumki.currentTime=0;
+  show(2);
+  $('#countdown').textContent='5';
+  $('#countdown').style.display='block';
+  let n=5;
+  const t=setInterval(()=>{
+    n--;
+    $('#countdown').textContent=n;
+    if(n<=0){
+      clearInterval(t);
+      $('#countdown').style.display='none';
+      document.querySelector('#page3').classList.add('page3play');
+      video.currentTime=0;
+      video.play().catch(()=>{});
+    }
+  },1000);
 };
 
-video.onended=()=>{show(3);setTimeout(()=>{$('#miss').style.display='none';$('#finalWish').style.opacity=1;setTimeout(()=>{$('#finalWish').style.opacity=0},2600)},5000)};
+video.onended=()=>{
+  show(3);
+  setTimeout(()=>{
+    $('#miss').style.display='none';
+    $('#finalWish').style.opacity=1;
+    setTimeout(()=>{$('#finalWish').style.opacity=0},2600);
+  },5000);
+};
 
-if('serviceWorker' in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('./service-worker.js').catch(()=>{}));
+if('serviceWorker' in navigator){
+  window.addEventListener('load',()=>navigator.serviceWorker.register('./service-worker.js').catch(()=>{}));
+}
