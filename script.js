@@ -7,6 +7,8 @@ birthday.loop=true;
 kumki.loop=true;
 
 let introStarted=false;
+let letterTimer=null;
+
 const startIntro=()=>{
   if(introStarted)return;
   introStarted=true;
@@ -15,12 +17,35 @@ const startIntro=()=>{
   const prompt=$('#nextPagePrompt');
   countdown.classList.add('fadeout');
   title.classList.remove('hidden');
-  prompt.classList.add('show');
+  title.textContent='';
+  prompt.classList.remove('show');
+
+  const text='HAPPY BIRTHDAY MITHRA';
+  let i=0;
+  letterTimer=setInterval(()=>{
+    title.textContent=text.slice(0,++i);
+    if(i>=text.length){
+      clearInterval(letterTimer);
+      letterTimer=null;
+      setTimeout(()=>{
+        $('#confetti').classList.add('burst');
+        setTimeout(()=>prompt.classList.add('show'),650);
+      },180);
+    }
+  },95);
+
   birthday.currentTime=0;
   birthday.volume=1;
   birthday.play().catch(()=>{});
 };
-window.addEventListener('load',startIntro);
+
+// Mobile browsers require a user gesture for audio. Desktop autoplay is attempted too.
+window.addEventListener('load',()=>{
+  birthday.play().then(startIntro).catch(()=>{});
+});
+
+// The first tap/click starts the birthday experience and audio on mobile.
+document.addEventListener('pointerdown',startIntro,{once:true});
 
 $('#nextPagePrompt').onclick=()=>{
   birthday.pause();
@@ -59,8 +84,11 @@ video.onended=()=>{
     $('#finalWish').style.opacity=1;
     setTimeout(()=>{
       $('#finalWish').style.opacity=0;
-      $('#lockScene').style.opacity=1;
-      document.body.classList.add('locked');
     },2600);
   },5000);
 };
+
+// Cache the local assets for reliable offline reopening when served from HTTPS/local server.
+if('serviceWorker' in navigator){
+  window.addEventListener('load',()=>navigator.serviceWorker.register('./service-worker.js').catch(()=>{}));
+}
