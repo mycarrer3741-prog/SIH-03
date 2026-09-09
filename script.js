@@ -6,8 +6,8 @@ birthday.loop=true;kumki.loop=true;
 let introStarted=false,letterTimer=null;
 
 function makeConfetti(){
-  const box=$('#confetti');
-  if(box.children.length)return;
+  const box=$('#confettiLayer');
+  box.innerHTML='';
   const symbols=['●','■','◆','✦','▲'];
   for(let i=0;i<90;i++){
     const el=document.createElement('i');
@@ -19,26 +19,33 @@ function makeConfetti(){
     el.style.animationDelay=`${Math.random()*.18}s`;
     box.appendChild(el);
   }
+  box.classList.remove('burst');
+  void box.offsetWidth;
+  box.classList.add('burst');
 }
 
 const startIntro=()=>{
   if(introStarted)return;
   introStarted=true;
-  const countdown=$('#introCountdown'),title=$('#birthdayTitle'),prompt=$('#nextPagePrompt');
+  const countdown=$('#introCountdown'),title=$('#birthdayTitle'),prompt=$('#nextPagePrompt'),tap=$('#tapToStart');
   countdown.classList.add('fadeout');
   title.classList.remove('hidden');title.textContent='';prompt.classList.remove('show');
+  if(tap)tap.classList.add('hide');
   const text='HAPPY BIRTHDAY MITHRA';let i=0;
   letterTimer=setInterval(()=>{
     title.textContent=text.slice(0,++i);
     if(i>=text.length){
       clearInterval(letterTimer);letterTimer=null;
-      setTimeout(()=>{$('#confetti').classList.add('burst');makeConfetti();setTimeout(()=>prompt.classList.add('show'),650)},180);
+      setTimeout(()=>{makeConfetti();setTimeout(()=>prompt.classList.add('show'),1300)},300);
     }
-  },95);
+  },170);
   birthday.currentTime=0;birthday.volume=1;birthday.play().catch(()=>{});
 };
 
-window.addEventListener('load',()=>{birthday.play().then(startIntro).catch(()=>{});});
+window.addEventListener('load',()=>{
+  const tap=$('#tapToStart');
+  if(tap)tap.addEventListener('click',startIntro,{once:true});
+});
 document.addEventListener('pointerdown',startIntro,{once:true});
 
 $('#nextPagePrompt').onclick=()=>{
