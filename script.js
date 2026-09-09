@@ -31,16 +31,26 @@ function makeConfetti(){
   box.classList.add('burst');
 }
 
-function startIntro(){
+async function startIntro(){
   if(introStarted)return;
+  const tap=$('#tapToStart');
+
+  birthday.currentTime=0;
+  birthday.volume=1;
+  try{
+    await birthday.play();
+  }catch(e){
+    if(tap)tap.classList.remove('hide');
+    return;
+  }
+
   introStarted=true;
   const countdown=$('#introCountdown');
   const title=$('#birthdayTitle');
   const prompt=$('#nextPagePrompt');
-  const tap=$('#tapToStart');
   const text='HAPPY BIRTHDAY MITHRA';
 
-  if(letterTimer)clearInterval(letterTimer);
+  if(letterTimer)clearTimeout(letterTimer);
   countdown.classList.add('fadeout');
   title.classList.remove('hidden');
   title.style.visibility='visible';
@@ -48,10 +58,6 @@ function startIntro(){
   title.textContent='';
   prompt.classList.remove('show');
   if(tap)tap.classList.add('hide');
-
-  birthday.currentTime=0;
-  birthday.volume=1;
-  birthday.play().catch(()=>{});
 
   let i=0;
   const typeNext=()=>{
@@ -72,9 +78,9 @@ function startIntro(){
 
 window.addEventListener('load',()=>{
   const tap=$('#tapToStart');
-  if(tap)tap.addEventListener('click',startIntro,{once:true});
+  if(tap)tap.addEventListener('click',startIntro);
 });
-document.addEventListener('pointerdown',startIntro,{once:true});
+document.addEventListener('pointerdown',startIntro);
 
 $('#nextPagePrompt').onclick=()=>{
   birthday.pause();
