@@ -108,10 +108,19 @@ $('#nextBtn').onclick=()=>{
 
 video.onended=()=>{
   show(3);
+  const miss=$('#miss');
+  const finalWish=$('#finalWish');
+  finalWish.style.display='none';
+  finalWish.style.opacity='0';
+  miss.style.display='block';
+  miss.style.opacity='1';
+
   setTimeout(()=>{
-    $('#miss').style.display='none';
-    $('#finalWish').style.opacity=1;
-    setTimeout(()=>{$('#finalWish').style.opacity=0},2600);
+    miss.style.display='none';
+    miss.style.opacity='0';
+    finalWish.style.display='block';
+    finalWish.style.opacity='1';
+    finalWish.classList.add('wishShow');
   },5000);
 };
 
