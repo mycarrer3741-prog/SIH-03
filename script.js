@@ -81,8 +81,13 @@ function finishIntroStart(tap){
 
 window.addEventListener('load',()=>{
   const tap=$('#tapToStart');
-  if(tap)tap.addEventListener('click',startIntro);
+  if(tap){
+    tap.addEventListener('touchend',startIntro,{passive:true});
+    tap.addEventListener('click',startIntro);
+  }
 });
+document.addEventListener('pointerdown',startIntro,{passive:true});
+document.addEventListener('touchend',startIntro,{passive:true});
 
 $('#nextPagePrompt').onclick=()=>{
   birthday.pause();
@@ -132,5 +137,5 @@ video.onended=()=>{
 };
 
 if('serviceWorker' in navigator){
-  window.addEventListener('load',()=>navigator.serviceWorker.register('./service-worker.js').catch(()=>{}));
+  window.addEventListener('load',()=>navigator.serviceWorker.register('./service-worker.js?v=4').catch(()=>{}));
 }
