@@ -2,7 +2,7 @@ const $=s=>document.querySelector(s);
 const pages=[...document.querySelectorAll('.page')];
 const show=n=>pages.forEach((p,i)=>p.classList.toggle('active',i===n));
 const birthday=$('#birthdayAudio'),kumki=$('#kumkiAudio'),video=$('#breakVideo');
-birthday.loop=true;kumki.loop=true;
+birthday.loop=true;birthday.autoplay=false;birthday.muted=false;kumki.loop=true;
 let introStarted=false,letterTimer=null;
 
 function makeConfetti(){
@@ -31,25 +31,29 @@ function makeConfetti(){
   box.classList.add('burst');
 }
 
-async function startIntro(){
+function startIntro(){
   if(introStarted)return;
   const tap=$('#tapToStart');
-
   birthday.currentTime=0;
+  birthday.muted=false;
   birthday.volume=1;
-  try{
-    await birthday.play();
-  }catch(e){
-    if(tap)tap.classList.remove('hide');
+  const playAttempt=birthday.play();
+  if(!playAttempt){
+    finishIntroStart(tap);
     return;
   }
+  playAttempt.then(()=>finishIntroStart(tap)).catch(()=>{
+    if(tap){tap.classList.remove('hide');tap.textContent='TAP HERE TO PLAY 🎵';}
+  });
+}
 
+function finishIntroStart(tap){
+  if(introStarted)return;
   introStarted=true;
   const countdown=$('#introCountdown');
   const title=$('#birthdayTitle');
   const prompt=$('#nextPagePrompt');
   const text='HAPPY BIRTHDAY MITHRA';
-
   if(letterTimer)clearTimeout(letterTimer);
   countdown.classList.add('fadeout');
   title.classList.remove('hidden');
@@ -58,7 +62,6 @@ async function startIntro(){
   title.textContent='';
   prompt.classList.remove('show');
   if(tap)tap.classList.add('hide');
-
   let i=0;
   const typeNext=()=>{
     i++;
@@ -80,7 +83,6 @@ window.addEventListener('load',()=>{
   const tap=$('#tapToStart');
   if(tap)tap.addEventListener('click',startIntro);
 });
-document.addEventListener('pointerdown',startIntro);
 
 $('#nextPagePrompt').onclick=()=>{
   birthday.pause();
@@ -120,7 +122,6 @@ video.onended=()=>{
   finalWish.style.opacity='0';
   miss.style.display='block';
   miss.style.opacity='1';
-
   setTimeout(()=>{
     miss.style.display='none';
     miss.style.opacity='0';
