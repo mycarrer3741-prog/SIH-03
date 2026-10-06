@@ -1,4 +1,8 @@
 const $=s=>document.querySelector(s);
+function setViewportHeight(){document.documentElement.style.setProperty('--app-vh',(window.innerHeight*0.01)+'px');}
+setViewportHeight();
+window.addEventListener('resize',setViewportHeight,{passive:true});
+window.addEventListener('orientationchange',()=>setTimeout(setViewportHeight,150),{passive:true});
 const playAudio=audio=>{audio.muted=false;audio.volume=1;const p=audio.play();return p&&typeof p.catch==='function'?p:Promise.resolve();};
 const pages=[...document.querySelectorAll('.page')];
 const show=n=>pages.forEach((p,i)=>p.classList.toggle('active',i===n));
