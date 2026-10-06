@@ -1,4 +1,5 @@
 const $=s=>document.querySelector(s);
+const playAudio=audio=>{audio.muted=false;audio.volume=1;const p=audio.play();return p&&typeof p.catch==='function'?p:Promise.resolve();};
 const pages=[...document.querySelectorAll('.page')];
 const show=n=>pages.forEach((p,i)=>p.classList.toggle('active',i===n));
 const birthday=$('#birthdayAudio'),kumki=$('#kumkiAudio'),dc=$('#dcAudio'),video=$('#breakVideo');
@@ -104,7 +105,7 @@ $('#nextBtn').onclick=()=>{
   kumki.currentTime=0;
   show(2);
   dc.currentTime=0;
-  dc.play().catch(()=>{});
+  playAudio(dc).catch(()=>{});
 };
 
 $('#messageNextBtn').onclick=()=>{
