@@ -1,8 +1,8 @@
 const $=s=>document.querySelector(s);
 const pages=[...document.querySelectorAll('.page')];
 const show=n=>pages.forEach((p,i)=>p.classList.toggle('active',i===n));
-const birthday=$('#birthdayAudio'),kumki=$('#kumkiAudio'),video=$('#breakVideo');
-birthday.loop=true;birthday.autoplay=false;birthday.muted=false;kumki.loop=true;
+const birthday=$('#birthdayAudio'),kumki=$('#kumkiAudio'),dc=$('#dcAudio'),video=$('#breakVideo');
+birthday.loop=true;birthday.autoplay=false;birthday.muted=false;kumki.loop=true;dc.loop=true;dc.volume=1;
 let introStarted=false,letterTimer=null;
 
 function makeConfetti(){
@@ -103,9 +103,13 @@ $('#nextBtn').onclick=()=>{
   kumki.pause();
   kumki.currentTime=0;
   show(2);
+  dc.currentTime=0;
+  dc.play().catch(()=>{});
 };
 
 $('#messageNextBtn').onclick=()=>{
+  dc.pause();
+  dc.currentTime=0;
   show(3);
   $('#countdown').textContent='5';
   $('#countdown').style.display='block';
