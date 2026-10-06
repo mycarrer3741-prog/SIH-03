@@ -103,6 +103,10 @@ $('#nextBtn').onclick=()=>{
   kumki.pause();
   kumki.currentTime=0;
   show(2);
+};
+
+$('#messageNextBtn').onclick=()=>{
+  show(3);
   $('#countdown').textContent='5';
   $('#countdown').style.display='block';
   let n=5;
@@ -120,7 +124,7 @@ $('#nextBtn').onclick=()=>{
 };
 
 video.onended=()=>{
-  show(3);
+  show(4);
   const miss=$('#miss');
   const finalWish=$('#finalWish');
   finalWish.style.display='none';
