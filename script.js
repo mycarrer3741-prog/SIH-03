@@ -116,7 +116,7 @@ $('#messageNextBtn').onclick=()=>{
     if(n<=0){
       clearInterval(t);
       $('#countdown').style.display='none';
-      document.querySelector('#page3').classList.add('page3play');
+      document.querySelector('#page4').classList.add('page3play');
       video.currentTime=0;
       video.play().catch(()=>{});
     }
