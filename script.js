@@ -6,8 +6,8 @@ window.addEventListener('orientationchange',()=>setTimeout(setViewportHeight,150
 const playAudio=audio=>{audio.muted=false;audio.volume=1;const p=audio.play();return p&&typeof p.catch==='function'?p:Promise.resolve();};
 const pages=[...document.querySelectorAll('.page')];
 const show=n=>pages.forEach((p,i)=>p.classList.toggle('active',i===n));
-const birthday=$('#birthdayAudio'),kumki=$('#kumkiAudio'),dc=$('#dcAudio'),video=$('#breakVideo');
-birthday.loop=true;birthday.autoplay=false;birthday.muted=false;kumki.loop=true;dc.loop=true;dc.volume=1;
+const birthday=$('#birthdayAudio'),rajarani=$('#rajaraniAudio'),rajarani2=$('#rajarani2Audio'),dc=$('#dcAudio'),video=$('#breakVideo');
+birthday.loop=true;birthday.autoplay=false;birthday.muted=false;rajarani.loop=true;rajarani2.loop=false;dc.loop=true;dc.volume=1;
 let introStarted=false,letterTimer=null;
 
 function makeConfetti(){
@@ -99,14 +99,14 @@ $('#nextPagePrompt').onclick=()=>{
   birthday.currentTime=0;
   $('#nextPagePrompt').classList.remove('show');
   show(1);
-  kumki.currentTime=0;
-  kumki.volume=1;
-  kumki.play().catch(()=>{});
+  rajarani.currentTime=0;
+  rajarani.volume=1;
+  playAudio(rajarani).catch(()=>{});
 };
 
 $('#nextBtn').onclick=()=>{
-  kumki.pause();
-  kumki.currentTime=0;
+  rajarani.pause();
+  rajarani.currentTime=0;
   show(2);
   dc.currentTime=0;
   playAudio(dc).catch(()=>{});
@@ -134,15 +134,20 @@ $('#messageNextBtn').onclick=()=>{
 
 video.onended=()=>{
   show(4);
-  const miss=$('#miss'), finalWish=$('#finalWish'), lastMessage=$('#lastMessage'), shutter=$('#endingShutter');
+  const miss=$('#miss'), finalWish=$('#finalWish'), lastMessage=$('#lastMessage'), shutter=$('#endingShutter'), musicFallback=$('#musicFallback');
   miss.style.display='none';
   finalWish.style.display='none';
   $('#byeText').style.display='none';
   shutter.classList.remove('shutter-close');
   lastMessage.style.display='block';
   requestAnimationFrame(()=>lastMessage.classList.add('last-message-show'));
+  musicFallback.style.display='none';
+  rajarani2.currentTime=0;
+  playAudio(rajarani2).then(()=>{musicFallback.style.display='none';}).catch(()=>{musicFallback.style.display='block';});
   window.setTimeout(()=>shutter.classList.add('shutter-close'),9000);
 };
+
+$('#musicFallback').addEventListener('click',()=>playAudio(rajarani2).then(()=>{$('#musicFallback').style.display='none';}).catch(()=>{$('#musicFallback').style.display='block';}));
 
 if('serviceWorker' in navigator){
   window.addEventListener('load',()=>navigator.serviceWorker.register('./service-worker.js?v=6').catch(()=>{}));
