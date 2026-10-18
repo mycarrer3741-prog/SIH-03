@@ -150,5 +150,5 @@ video.onended=()=>{
 $('#musicFallback').addEventListener('click',()=>playAudio(rajarani2).then(()=>{$('#musicFallback').style.display='none';}).catch(()=>{$('#musicFallback').style.display='block';}));
 
 if('serviceWorker' in navigator){
-  window.addEventListener('load',()=>navigator.serviceWorker.register('./service-worker.js?v=7').catch(()=>{}));
+  window.addEventListener('load',()=>navigator.serviceWorker.register('./service-worker.js?v=8').catch(()=>{}));
 }
