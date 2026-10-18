@@ -156,5 +156,5 @@ rajarani2.addEventListener('ended',()=>{
 $('#musicFallback').addEventListener('click',()=>playAudio(rajarani2).then(()=>{$('#musicFallback').style.display='none';}).catch(()=>{$('#musicFallback').style.display='block';}));
 
 if('serviceWorker' in navigator){
-  window.addEventListener('load',()=>navigator.serviceWorker.register('./service-worker.js?v=9').catch(()=>{}));
+  window.addEventListener('load',()=>navigator.serviceWorker.register('./service-worker.js?v=10').catch(()=>{}));
 }
