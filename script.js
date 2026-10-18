@@ -144,11 +144,17 @@ video.onended=()=>{
   musicFallback.style.display='none';
   rajarani2.currentTime=0;
   playAudio(rajarani2).then(()=>{musicFallback.style.display='none';}).catch(()=>{musicFallback.style.display='block';});
-  window.setTimeout(()=>shutter.classList.add('shutter-close'),9000);
+  // Keep the ending screen open for the entire Rajarani2 track.
+  // The shutter closes only after the song finishes (or after a manual retry plays it).
 };
+
+rajarani2.addEventListener('ended',()=>{
+  $('#musicFallback').style.display='none';
+  $('#endingShutter').classList.add('shutter-close');
+});
 
 $('#musicFallback').addEventListener('click',()=>playAudio(rajarani2).then(()=>{$('#musicFallback').style.display='none';}).catch(()=>{$('#musicFallback').style.display='block';}));
 
 if('serviceWorker' in navigator){
-  window.addEventListener('load',()=>navigator.serviceWorker.register('./service-worker.js?v=8').catch(()=>{}));
+  window.addEventListener('load',()=>navigator.serviceWorker.register('./service-worker.js?v=9').catch(()=>{}));
 }
