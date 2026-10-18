@@ -134,19 +134,14 @@ $('#messageNextBtn').onclick=()=>{
 
 video.onended=()=>{
   show(4);
-  const miss=$('#miss');
-  const finalWish=$('#finalWish');
+  const miss=$('#miss'), finalWish=$('#finalWish'), lastMessage=$('#lastMessage'), shutter=$('#endingShutter');
+  miss.style.display='none';
   finalWish.style.display='none';
-  finalWish.style.opacity='0';
-  miss.style.display='block';
-  miss.style.opacity='1';
-  setTimeout(()=>{
-    miss.style.display='none';
-    miss.style.opacity='0';
-    finalWish.style.display='block';
-    finalWish.style.opacity='1';
-    finalWish.classList.add('wishShow');
-  },5000);
+  $('#byeText').style.display='none';
+  shutter.classList.remove('shutter-close');
+  lastMessage.style.display='block';
+  requestAnimationFrame(()=>lastMessage.classList.add('last-message-show'));
+  window.setTimeout(()=>shutter.classList.add('shutter-close'),9000);
 };
 
 if('serviceWorker' in navigator){
