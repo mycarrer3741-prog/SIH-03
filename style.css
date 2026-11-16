@@ -741,3 +741,37 @@
 /* Bow/arrow/heartbreak removed: birthday reveal follows video directly */
 #page5 .arrow-heart-scene{display:none!important}
 #page5 .birthday-reveal{z-index:8!important}
+
+
+/* video 2 and the previously requested final birthday extension */
+#page5 .touch-cake-prompt{cursor:pointer;pointer-events:auto;z-index:20}
+#page5 .falling-cake{cursor:pointer;pointer-events:auto}
+#page5 .video2-overlay{position:absolute;inset:0;z-index:50;display:none;align-items:center;justify-content:center;background:#000}
+#page5 .video2-overlay.video2-playing{display:flex}
+#page5 .video2-overlay video{width:100%;height:100%;object-fit:contain;background:#000}
+#page5 .final-ending{position:absolute;inset:0;z-index:60;display:none;align-items:center;justify-content:center;overflow:hidden;background:#080808;color:#fff;text-align:center}
+#page5 .final-ending.ending-show{display:flex;animation:endingFadeIn .65s ease both}
+#page5 .miss-you-message{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;opacity:1}
+#page5 .miss-you-words{font-family:Georgia,serif;font-size:clamp(34px,8vw,82px);font-weight:900;letter-spacing:2px;color:#ffe34f;-webkit-text-stroke:1.5px #111;text-shadow:3px 4px 0 #111,0 0 24px rgba(255,222,70,.5)}
+#page5 .miss-you-heart{font-size:clamp(65px,13vw,130px);filter:drop-shadow(0 0 18px rgba(255,30,65,.5));animation:missHeartBeat .9s ease-in-out infinite}
+#page5 .final-ending.dust-away .miss-you-message{animation:dustAway .85s ease forwards}
+#page5 .final-birthday-message{position:absolute;opacity:0;transform:scale(.45);font-family:Georgia,serif;font-size:clamp(38px,9vw,94px);font-weight:900;line-height:1.05;color:#ffe34f;-webkit-text-stroke:1.5px #111;text-shadow:3px 4px 0 #111,0 0 25px rgba(255,220,65,.45)}
+#page5 .final-birthday-message strong{font-size:1.12em;letter-spacing:5px}
+#page5 .final-ending.birthday-show .final-birthday-message{animation:finalBirthdayPop .8s cubic-bezier(.18,.85,.2,1.2) forwards}
+#page5 .bye-lock-scene{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:24px;background:#000;opacity:0;visibility:hidden}
+#page5 .final-ending.bye-show .bye-lock-scene{visibility:visible;animation:byeScreenIn 1s ease forwards}
+#page5 .lock-icon{position:relative;width:76px;height:78px;transform:scale(.7);opacity:0;animation:none}
+#page5 .final-ending.bye-show .lock-icon{animation:lockAppear .7s ease .35s forwards}
+#page5 .lock-body{position:absolute;left:8px;bottom:0;width:60px;height:47px;border:4px solid #fff;border-radius:9px;background:#111}
+#page5 .lock-shackle{position:absolute;left:21px;top:0;width:34px;height:39px;border:4px solid #fff;border-bottom:0;border-radius:22px 22px 0 0;transform-origin:bottom center;transition:transform .45s ease}
+#page5 .final-ending.bye-show .lock-shackle{transform:rotate(0deg)}
+#page5 .bye-text{margin-top:4px;font-family:Georgia,serif;font-size:clamp(48px,10vw,100px);font-weight:900;letter-spacing:10px;color:#fff;opacity:0;transform:translateY(18px)}
+#page5 .final-ending.bye-show .bye-text{animation:byeTextIn .7s ease 1s forwards}
+@keyframes endingFadeIn{from{opacity:0}to{opacity:1}}
+@keyframes missHeartBeat{50%{transform:scale(1.13)}}
+@keyframes dustAway{0%{opacity:1;filter:blur(0);transform:scale(1)}45%{opacity:.8;filter:blur(5px)}100%{opacity:0;filter:blur(18px);transform:translateY(-30px) scale(1.15)}}
+@keyframes finalBirthdayPop{to{opacity:1;transform:scale(1)}}
+@keyframes byeScreenIn{to{opacity:1}}
+@keyframes lockAppear{to{opacity:1;transform:scale(1)}}
+@keyframes byeTextIn{to{opacity:1;transform:translateY(0)}}
+@media(prefers-reduced-motion:reduce){#page5 .final-ending *{animation-duration:.01ms!important;animation-iteration-count:1!important}}
