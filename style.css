@@ -775,3 +775,19 @@
 @keyframes lockAppear{to{opacity:1;transform:scale(1)}}
 @keyframes byeTextIn{to{opacity:1;transform:translateY(0)}}
 @media(prefers-reduced-motion:reduce){#page5 .final-ending *{animation-duration:.01ms!important;animation-iteration-count:1!important}}
+
+#page5 .miss-you-message:after{
+  content:"";position:absolute;inset:12%;pointer-events:none;opacity:0;
+  background-image:
+    radial-gradient(circle,rgba(255,231,130,.95) 0 1.5px,transparent 2px),
+    radial-gradient(circle,rgba(255,255,255,.9) 0 1px,transparent 1.8px),
+    radial-gradient(circle,rgba(255,105,130,.9) 0 1.4px,transparent 2px);
+  background-size:37px 43px,53px 47px,61px 59px;
+  background-position:0 0,17px 11px,29px 23px;
+}
+#page5 .final-ending.dust-away .miss-you-message:after{animation:dustParticles .9s ease-out forwards}
+@keyframes dustParticles{
+  0%{opacity:0;transform:translateY(0) scale(.8);filter:blur(0)}
+  25%{opacity:1}
+  100%{opacity:0;transform:translateY(-65px) scale(1.3);filter:blur(3px)}
+}
