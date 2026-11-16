@@ -737,3 +737,7 @@
   #page5 .target-heart,#page5 .broken-heart{left:56%!important;top:43%!important}
   #page5 .target-heart span,#page5 .broken-heart i{-webkit-text-stroke:2.5px #fff!important}
 }
+
+/* Bow/arrow/heartbreak removed: birthday reveal follows video directly */
+#page5 .arrow-heart-scene{display:none!important}
+#page5 .birthday-reveal{z-index:8!important}
