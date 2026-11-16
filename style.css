@@ -20,3 +20,111 @@
 /* Mobile-friendly final music fallback button */
 #musicFallback{display:none;position:absolute;z-index:12;left:50%;bottom:max(22px,env(safe-area-inset-bottom));transform:translateX(-50%);max-width:92vw;padding:14px 22px;border:2px solid #c4003b;border-radius:999px;background:#fff;color:#9e0030;font:800 14px/1.2 Arial,sans-serif;letter-spacing:1px;box-shadow:0 4px 20px rgba(0,0,0,.2);touch-action:manipulation;cursor:pointer}
 #musicFallback:focus-visible{outline:3px solid #111;outline-offset:4px}
+
+
+/* Reference-video inspired visual refresh: floral opening + midnight galaxy */
+#page1{
+  background:radial-gradient(ellipse at 50% 48%,#fffdf2 0%,#fff4e5 52%,#f8e9d8 100%)!important;
+  isolation:isolate;
+}
+#page1:before{
+  z-index:0; opacity:1;
+  background:
+    radial-gradient(circle at 7% 16%,rgba(255,204,87,.9) 0 7px,transparent 8px),
+    radial-gradient(circle at 13% 21%,rgba(255,255,255,.9) 0 5px,transparent 6px),
+    radial-gradient(circle at 88% 14%,rgba(255,211,111,.85) 0 8px,transparent 9px),
+    radial-gradient(circle at 93% 28%,rgba(255,255,255,.95) 0 6px,transparent 7px),
+    radial-gradient(circle at 17% 78%,rgba(187,224,202,.8) 0 9px,transparent 10px),
+    radial-gradient(circle at 83% 82%,rgba(245,197,177,.8) 0 10px,transparent 11px),
+    radial-gradient(ellipse at 50% 100%,rgba(221,239,220,.55),transparent 55%),
+    linear-gradient(135deg,#fffdf5,#f9f0e5 55%,#fffaf0);
+}
+#page1:after{
+  content:"";position:absolute;z-index:1;pointer-events:none;
+  width:min(48vw,390px);height:min(48vw,390px);left:50%;top:48%;
+  transform:translate(-50%,-50%) scale(.25) rotate(-35deg);opacity:0;
+  border-radius:50%;
+  background:
+    radial-gradient(ellipse at 50% 15%,#f8d98b 0 13%,transparent 14%),
+    radial-gradient(ellipse at 85% 50%,#f4c8b0 0 13%,transparent 14%),
+    radial-gradient(ellipse at 50% 85%,#f6df9c 0 13%,transparent 14%),
+    radial-gradient(ellipse at 15% 50%,#c8dfce 0 13%,transparent 14%),
+    radial-gradient(circle at 50% 50%,#e9a84f 0 8%,transparent 9%);
+  filter:drop-shadow(0 8px 18px rgba(159,116,62,.15));
+  animation:flowerBloom 2.1s cubic-bezier(.2,.75,.25,1) .25s forwards;
+}
+#page1 .hearts{z-index:2;opacity:.16}
+#page1 .hero-title,#page1 #tapToStart,#page1 .intro-countdown,#page1 #confettiLayer,#page1 .next-prompt{z-index:4}
+@keyframes flowerBloom{
+  0%{opacity:0;transform:translate(-50%,-50%) scale(.15) rotate(-55deg)}
+  55%{opacity:.92;transform:translate(-50%,-50%) scale(1.08) rotate(8deg)}
+  78%{transform:translate(-50%,-50%) scale(.96) rotate(-3deg)}
+  100%{opacity:.72;transform:translate(-50%,-50%) scale(1) rotate(0)}
+}
+#page2{
+  background:
+    radial-gradient(ellipse at 8% 12%,rgba(238,194,131,.25),transparent 28%),
+    radial-gradient(ellipse at 92% 88%,rgba(225,176,144,.25),transparent 30%),
+    linear-gradient(145deg,#f9f0df,#eee0c7 52%,#f8edda)!important;
+}
+#page2:before{
+  z-index:0;opacity:1;
+  background:
+    radial-gradient(circle at 4% 8%,#f0c96e 0 3px,transparent 4px),
+    radial-gradient(circle at 7% 12%,#e7a7a5 0 4px,transparent 5px),
+    radial-gradient(circle at 96% 9%,#d9b66d 0 4px,transparent 5px),
+    radial-gradient(circle at 92% 14%,#c6d9bd 0 5px,transparent 6px),
+    radial-gradient(circle at 5% 91%,#d9b7a1 0 5px,transparent 6px),
+    radial-gradient(circle at 96% 94%,#e8c56e 0 4px,transparent 5px),
+    linear-gradient(135deg,#fff8e9,#eee0c7);
+}
+#page2 .scroll-wrap{z-index:2}
+#page2 .paper{background:linear-gradient(135deg,#fffaf0,#f6e9d4)!important;border:1px solid rgba(151,111,64,.45);border-radius:12px;box-shadow:0 22px 65px rgba(75,45,22,.28),inset 0 0 45px rgba(198,158,104,.12)}
+#page2 .paper:before,#page2 .paper:after{display:none}
+#page2 .paper-inner{color:#493322}
+#page3{
+  background:
+    radial-gradient(ellipse at 50% 110%,rgba(145,47,91,.6),transparent 56%),
+    radial-gradient(ellipse at 50% -10%,rgba(65,42,111,.55),transparent 52%),
+    linear-gradient(160deg,#100d27,#1c1237 48%,#160d28)!important;
+  isolation:isolate;
+}
+#page3:before,#page4:before,#page5:before{
+  z-index:0;opacity:1;
+  background-image:
+    radial-gradient(2px 2px at 8% 17%,rgba(255,255,255,.9) 50%,transparent 100%),
+    radial-gradient(1.5px 1.5px at 18% 68%,rgba(255,224,173,.9) 50%,transparent 100%),
+    radial-gradient(2px 2px at 29% 32%,rgba(255,255,255,.85) 50%,transparent 100%),
+    radial-gradient(1px 1px at 43% 12%,rgba(255,218,156,.9) 50%,transparent 100%),
+    radial-gradient(2px 2px at 57% 77%,rgba(255,255,255,.85) 50%,transparent 100%),
+    radial-gradient(1.5px 1.5px at 68% 25%,rgba(255,220,173,.85) 50%,transparent 100%),
+    radial-gradient(2px 2px at 81% 56%,rgba(255,255,255,.85) 50%,transparent 100%),
+    radial-gradient(1px 1px at 93% 18%,rgba(255,225,180,.9) 50%,transparent 100%),
+    radial-gradient(ellipse at 50% 110%,rgba(153,45,93,.55),transparent 60%),
+    linear-gradient(160deg,#100d27,#1c1237 48%,#160d28);
+  background-size:100% 100%;
+  animation:galaxyGlow 8s ease-in-out infinite alternate;
+}
+#page3 .message-scroll{z-index:2}
+#page3 .message-text{ text-shadow:0 0 12px rgba(218,194,255,.12) }
+#page4{
+  background:
+    radial-gradient(ellipse at 50% 110%,rgba(160,50,98,.5),transparent 60%),
+    linear-gradient(160deg,#100d27,#1c1237 55%,#160d28)!important;
+}
+#page4:before{content:"";position:absolute;inset:0;pointer-events:none}
+#page4 #countdown{position:relative;z-index:2;color:#ffe7b0;text-shadow:0 0 22px #d99b63}
+#page4 #breakVideo{position:relative;z-index:2}
+#page5{
+  background:
+    radial-gradient(ellipse at 50% 110%,rgba(172,52,99,.7),transparent 58%),
+    radial-gradient(ellipse at 50% 0%,rgba(70,47,119,.55),transparent 60%),
+    linear-gradient(160deg,#100d27,#1c1237 48%,#160d28)!important;
+}
+#page5:before{content:"";position:absolute;inset:0;pointer-events:none}
+#page5 .hearts span{background:#ffd48a;filter:drop-shadow(0 0 9px rgba(255,203,127,.9));opacity:.65}
+#page5 .hearts span:before,#page5 .hearts span:after{background:#ffd48a}
+#page5 #lastMessage{color:#ffe2ad;-webkit-text-stroke:1px #24132f;text-shadow:0 0 18px rgba(255,208,139,.45),2px 2px 0 #24132f}
+#page5 #endingShutter{z-index:20}
+@keyframes galaxyGlow{from{filter:brightness(.88)}to{filter:brightness(1.18)}}
+@media(prefers-reduced-motion:reduce){#page1:after,#page3:before,#page4:before,#page5:before{animation:none}}
