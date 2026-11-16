@@ -167,3 +167,46 @@
 @media(max-width:900px){.heart-tree{left:-82px;bottom:4vh;transform:scale(.72);transform-origin:bottom left;opacity:.3}}
 @media(max-width:560px){.heart-tree{display:none}.flower-field span{font-size:24px}}
 @media(prefers-reduced-motion:reduce){.flower-field span,.tree-crown,.tree-crown i,.starfield,.starfield:after,.ending-confetti-piece{animation:none!important}}
+
+
+/* FIRST PAGE: soft watercolor-inspired falling petals */
+#page1{background:linear-gradient(135deg,#fffaf4 0%,#fff4f2 48%,#fdf5fa 100%)!important}
+#page1:before{background:linear-gradient(135deg,#fffaf4 0%,#fff4f2 48%,#fdf5fa 100%)!important}
+#page1 .flower-field{z-index:4;overflow:hidden}
+#page1 .flower-field span{
+  bottom:-12vh;
+  width:clamp(9px,1.15vw,16px);
+  height:clamp(15px,1.8vw,24px);
+  font-size:0;
+  border-radius:85% 12% 85% 12%;
+  opacity:0;
+  filter:blur(.15px) drop-shadow(0 2px 3px rgba(153,103,120,.16));
+  background:linear-gradient(145deg,#fff1ee 0%,#f6b8c5 48%,#e99bad 100%);
+  animation:watercolorPetalFall 15s linear infinite;
+}
+#page1 .flower-field span:nth-child(3n){
+  background:linear-gradient(145deg,#fff2dc 0%,#f6c9a8 52%,#e9a88e 100%);
+}
+#page1 .flower-field span:nth-child(3n + 1){
+  background:linear-gradient(145deg,#fff4fb 0%,#dfc5e9 55%,#c8a8d8 100%);
+}
+#page1 .flower-field span:nth-child(1){left:4%;animation-delay:-2s;animation-duration:17s}
+#page1 .flower-field span:nth-child(2){left:13%;animation-delay:-11s;animation-duration:19s}
+#page1 .flower-field span:nth-child(3){left:22%;animation-delay:-5s;animation-duration:16s}
+#page1 .flower-field span:nth-child(4){left:31%;animation-delay:-14s;animation-duration:21s}
+#page1 .flower-field span:nth-child(5){left:40%;animation-delay:-8s;animation-duration:18s}
+#page1 .flower-field span:nth-child(6){left:49%;animation-delay:-3s;animation-duration:20s}
+#page1 .flower-field span:nth-child(7){left:58%;animation-delay:-13s;animation-duration:17s}
+#page1 .flower-field span:nth-child(8){left:67%;animation-delay:-6s;animation-duration:22s}
+#page1 .flower-field span:nth-child(9){left:76%;animation-delay:-16s;animation-duration:18s}
+#page1 .flower-field span:nth-child(10){left:85%;animation-delay:-9s;animation-duration:20s}
+#page1 .flower-field span:nth-child(11){left:94%;animation-delay:-4s;animation-duration:16s}
+#page1 .flower-field span:nth-child(12){left:55%;animation-delay:-18s;animation-duration:23s}
+@keyframes watercolorPetalFall{
+  0%{transform:translate3d(0,0,0) rotate(0deg) scale(.7);opacity:0}
+  10%{opacity:.78}
+  35%{transform:translate3d(32px,-32vh,0) rotate(145deg) scale(1)}
+  70%{transform:translate3d(-26px,-76vh,0) rotate(290deg) scale(.88);opacity:.72}
+  100%{transform:translate3d(38px,-118vh,0) rotate(440deg) scale(.72);opacity:0}
+}
+@media(prefers-reduced-motion:reduce){#page1 .flower-field span{animation:none!important;opacity:.22}}
