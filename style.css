@@ -662,3 +662,78 @@
 @keyframes heartHalfLeft{to{transform:translate(-32px,10px) rotate(-24deg);opacity:0}}
 @keyframes heartHalfRight{to{transform:translate(32px,10px) rotate(24deg);opacity:0}}
 @media(max-width:600px){#page5 .bow-arrow-art{top:31%!important}#page5 .target-heart{-webkit-text-stroke:2.5px #fff!important}}
+
+
+/* v48: corrected visible bow-to-heart hit and stronger heartbreak/title choreography */
+#page5 .bow-arrow-art{
+  left:4%!important;
+  top:27%!important;
+  width:min(58vw,900px)!important;
+  height:auto!important;
+  overflow:visible!important;
+}
+#page5 .arrow-drawing{
+  opacity:1!important;
+  transform:translate(0,0)!important;
+  transition:transform 1.05s cubic-bezier(.15,.78,.18,1),opacity .12s ease!important;
+}
+#page5 #arrowHeartScene.shoot-arrow .arrow-drawing{
+  transform:translate(0,10vh)!important;
+  opacity:1!important;
+}
+#page5 .target-heart{
+  left:50%!important;
+  top:43%!important;
+  font-size:clamp(105px,18vw,190px)!important;
+  color:#f00028!important;
+  -webkit-text-stroke:3px #fff!important;
+  paint-order:stroke fill!important;
+  z-index:6!important;
+}
+#page5 .target-heart span{
+  display:block!important;
+  color:#f00028!important;
+  -webkit-text-stroke:3px #fff!important;
+  text-shadow:0 0 16px rgba(255,0,35,.75),0 0 35px rgba(255,0,35,.5)!important;
+}
+#page5 .broken-heart{
+  left:50%!important;top:43%!important;
+  width:clamp(110px,19vw,190px)!important;
+  height:auto!important;
+  font-size:clamp(105px,18vw,190px)!important;
+  color:#f00028!important;
+  -webkit-text-stroke:3px #fff!important;
+  z-index:7!important;
+}
+#page5 .broken-heart i{
+  color:#f00028!important;
+  -webkit-text-stroke:3px #fff!important;
+  text-shadow:0 0 16px rgba(255,0,35,.7)!important;
+}
+#page5 .heart-break .broken-heart i:first-child{
+  clip-path:polygon(0 0,100% 0,47% 48%,52% 100%,0 100%)!important;
+  animation:heartHalfLeft .85s ease-out .05s forwards!important;
+}
+#page5 .heart-break .broken-heart i:last-child{
+  clip-path:polygon(0 0,100% 0,100% 100%,48% 100%,53% 48%)!important;
+  animation:heartHalfRight .85s ease-out .05s forwards!important;
+}
+#page5 .birthday-reveal-title .title-line{display:block!important;white-space:nowrap!important}
+#page5 .birthday-reveal-title .letter-pop{
+  display:inline-block!important;
+  opacity:0!important;
+  animation:letterPop .42s cubic-bezier(.2,.85,.25,1.25) forwards!important;
+}
+@keyframes letterPop{
+  0%{opacity:0;transform:translateY(26px) scale(.65);filter:blur(6px)}
+  70%{opacity:1;transform:translateY(-4px) scale(1.1);filter:blur(0)}
+  100%{opacity:1;transform:translateY(0) scale(1);filter:blur(0)}
+}
+@keyframes heartHalfLeft{to{transform:translate(-28px,12px) rotate(-25deg);opacity:0}}
+@keyframes heartHalfRight{to{transform:translate(28px,12px) rotate(25deg);opacity:0}}
+@media(max-width:600px){
+  #page5 .bow-arrow-art{left:4%!important;top:27%!important;width:70vw!important}
+  #page5 #arrowHeartScene.shoot-arrow .arrow-drawing{transform:translate(0,14vh)!important}
+  #page5 .target-heart,#page5 .broken-heart{left:56%!important;top:43%!important}
+  #page5 .target-heart span,#page5 .broken-heart i{-webkit-text-stroke:2.5px #fff!important}
+}
