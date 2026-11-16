@@ -210,3 +210,17 @@
   100%{transform:translate3d(38px,-118vh,0) rotate(440deg) scale(.72);opacity:0}
 }
 @media(prefers-reduced-motion:reduce){#page1 .flower-field span{animation:none!important;opacity:.22}}
+
+
+/* First-page title: centered on the floral template */
+#page1 .hero-title{
+  top:50%!important;
+  left:50%!important;
+  transform:translate(-50%,-50%)!important;
+  color:#171313!important;
+  -webkit-text-stroke:0!important;
+  text-shadow:none!important;
+  z-index:7!important;
+  width:min(92vw,1000px)!important;
+  text-align:center!important;
+}
