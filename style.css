@@ -607,3 +607,40 @@
     100%{opacity:0;transform:translate(35vw,0) rotate(0deg) scale(.98)}
   }
 }
+
+
+/* Bow-and-arrow artwork matched to the user's supplied reference illustration */
+#page5 .bow-arrow-art{
+  position:absolute;
+  left:5%;
+  top:18%;
+  width:min(48vw,580px);
+  height:auto;
+  overflow:visible;
+  z-index:5;
+  filter:drop-shadow(0 4px 5px rgba(0,0,0,.22));
+}
+#page5 .bow-drawing{transform-origin:270px 230px}
+#page5 .arrow-drawing{
+  transform-origin:190px 303px;
+  transition:transform 1.08s cubic-bezier(.18,.76,.22,1),opacity .18s ease;
+}
+#page5 .shoot-arrow .arrow-drawing{
+  transform:translate(260px,-165px);
+  opacity:0;
+}
+#page5 .target-heart{
+  left:51%!important;
+  top:43%!important;
+}
+@media(max-width:600px){
+  #page5 .bow-arrow-art{
+    left:1%;
+    top:24%;
+    width:70vw;
+  }
+  #page5 .shoot-arrow .arrow-drawing{
+    transform:translate(170px,-108px);
+  }
+  #page5 .target-heart{left:56%!important;top:43%!important}
+}
