@@ -154,8 +154,38 @@ $('#messageNextBtn').onclick=()=>{
 const secondVideo=$('#secondVideo');
 const video2Overlay=$('#video2Overlay');
 const finalEnding=$('#finalEnding');
-let endingTimers=[];
-function clearEndingTimers(){endingTimers.forEach(clearTimeout);endingTimers=[];}
+const lastMessage=$('#lastMessage');
+const endingShutter=$('#endingShutter');
+const musicFallback=$('#musicFallback');
+let finalEndingStarted=false;
+let shutterStarted=false;
+
+function startFinalMusic(){
+  if(!rajarani2)return;
+  rajarani2.pause();
+  rajarani2.currentTime=0;
+  rajarani2.muted=false;
+  rajarani2.volume=1;
+  const attempt=playAudio(rajarani2);
+  if(attempt&&typeof attempt.then==='function'){
+    attempt.then(()=>musicFallback?.classList.remove('show'))
+      .catch(()=>musicFallback?.classList.add('show'));
+  }
+}
+function closeEndingShutter(){
+  if(shutterStarted||!endingShutter)return;
+  shutterStarted=true;
+  musicFallback?.classList.remove('show');
+  endingShutter.classList.remove('shutter-close');
+  void endingShutter.offsetWidth;
+  endingShutter.classList.add('shutter-close');
+}
+if(rajarani2){
+  rajarani2.loop=false;
+  rajarani2.addEventListener('ended',closeEndingShutter);
+}
+musicFallback?.addEventListener('click',startFinalMusic);
+
 function playSecondVideo(){
   if(!secondVideo||!video2Overlay)return;
   video2Overlay.classList.add('video2-playing');
@@ -171,16 +201,24 @@ function playSecondVideo(){
   }
 }
 function runFinalEnding(){
-  if(!finalEnding)return;
-  clearEndingTimers();
+  if(!finalEnding||finalEndingStarted)return;
+  finalEndingStarted=true;
+  shutterStarted=false;
   video2Overlay?.classList.remove('video2-playing');
   video2Overlay?.setAttribute('aria-hidden','true');
-  finalEnding.classList.remove('ending-show','dust-away','birthday-show','bye-show');
+  secondVideo?.pause();
+  rajarani2?.pause();
+  if(rajarani2)rajarani2.currentTime=0;
+  endingShutter?.classList.remove('shutter-close');
+  musicFallback?.classList.remove('show');
   finalEnding.classList.add('ending-show');
   finalEnding.setAttribute('aria-hidden','false');
-  endingTimers.push(setTimeout(()=>finalEnding.classList.add('dust-away'),5000));
-  endingTimers.push(setTimeout(()=>finalEnding.classList.add('birthday-show'),5900));
-  endingTimers.push(setTimeout(()=>finalEnding.classList.add('bye-show'),10500));
+  if(lastMessage){
+    lastMessage.classList.remove('last-message-show');
+    void lastMessage.offsetWidth;
+    lastMessage.classList.add('last-message-show');
+  }
+  startFinalMusic();
 }
 if(secondVideo){
   secondVideo.addEventListener('ended',runFinalEnding);
@@ -211,10 +249,17 @@ function startPostVideoSequence(){
   reveal.classList.remove('reveal-show','cake-drop');
   prompt.classList.remove('prompt-show','prompt-touched');
   prompt.dataset.started='';
+  finalEndingStarted=false;
+  shutterStarted=false;
   if(secondVideo){secondVideo.pause();secondVideo.currentTime=0;}
+  if(rajarani2){rajarani2.pause();rajarani2.currentTime=0;}
   video2Overlay?.classList.remove('video2-playing');
-  if(finalEnding){finalEnding.classList.remove('ending-show','dust-away','birthday-show','bye-show');finalEnding.setAttribute('aria-hidden','true');}
-  clearEndingTimers();
+  video2Overlay?.setAttribute('aria-hidden','true');
+  finalEnding?.classList.remove('ending-show');
+  finalEnding?.setAttribute('aria-hidden','true');
+  lastMessage?.classList.remove('last-message-show');
+  endingShutter?.classList.remove('shutter-close');
+  musicFallback?.classList.remove('show');
   void page.offsetWidth;
   page.classList.add('red-impact');
   setTimeout(()=>{
@@ -246,5 +291,5 @@ video.onended=()=>{
 };
 
 if('serviceWorker' in navigator){
-  window.addEventListener('load',()=>navigator.serviceWorker.register('./service-worker.js?v=37').catch(()=>{}));
+  window.addEventListener('load',()=>navigator.serviceWorker.register('./service-worker.js?v=38').catch(()=>{}));
 }
