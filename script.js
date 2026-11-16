@@ -151,6 +151,56 @@ $('#messageNextBtn').onclick=()=>{
   },1000);
 };
 
+const secondVideo=$('#secondVideo');
+const video2Overlay=$('#video2Overlay');
+const finalEnding=$('#finalEnding');
+let endingTimers=[];
+function clearEndingTimers(){endingTimers.forEach(clearTimeout);endingTimers=[];}
+function playSecondVideo(){
+  if(!secondVideo||!video2Overlay)return;
+  video2Overlay.classList.add('video2-playing');
+  video2Overlay.setAttribute('aria-hidden','false');
+  secondVideo.currentTime=0;
+  const attempt=secondVideo.play();
+  if(attempt&&typeof attempt.catch==='function'){
+    attempt.catch(()=>{
+      video2Overlay.classList.remove('video2-playing');
+      video2Overlay.setAttribute('aria-hidden','true');
+      runFinalEnding();
+    });
+  }
+}
+function runFinalEnding(){
+  if(!finalEnding)return;
+  clearEndingTimers();
+  video2Overlay?.classList.remove('video2-playing');
+  video2Overlay?.setAttribute('aria-hidden','true');
+  finalEnding.classList.remove('ending-show','dust-away','birthday-show','bye-show');
+  finalEnding.classList.add('ending-show');
+  finalEnding.setAttribute('aria-hidden','false');
+  endingTimers.push(setTimeout(()=>finalEnding.classList.add('dust-away'),5000));
+  endingTimers.push(setTimeout(()=>finalEnding.classList.add('birthday-show'),5900));
+  endingTimers.push(setTimeout(()=>finalEnding.classList.add('bye-show'),10500));
+}
+if(secondVideo){
+  secondVideo.addEventListener('ended',runFinalEnding);
+  secondVideo.addEventListener('error',runFinalEnding);
+}
+function triggerCakeTouch(){
+  const prompt=$('#touchCakePrompt');
+  if(!prompt||prompt.dataset.started==='yes')return;
+  prompt.dataset.started='yes';
+  prompt.classList.add('prompt-touched');
+  playSecondVideo();
+}
+const touchPrompt=$('#touchCakePrompt');
+const cakeArt=$('#page5 .falling-cake');
+if(touchPrompt){
+  touchPrompt.addEventListener('click',triggerCakeTouch);
+  touchPrompt.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();triggerCakeTouch();}});
+}
+if(cakeArt) cakeArt.addEventListener('click',triggerCakeTouch);
+
 function startPostVideoSequence(){
   const page=$('#page5');
   const reveal=$('#birthdayReveal');
@@ -159,7 +209,12 @@ function startPostVideoSequence(){
   show(4);
   page.classList.remove('red-impact','birthday-mode');
   reveal.classList.remove('reveal-show','cake-drop');
-  prompt.classList.remove('prompt-show');
+  prompt.classList.remove('prompt-show','prompt-touched');
+  prompt.dataset.started='';
+  if(secondVideo){secondVideo.pause();secondVideo.currentTime=0;}
+  video2Overlay?.classList.remove('video2-playing');
+  if(finalEnding){finalEnding.classList.remove('ending-show','dust-away','birthday-show','bye-show');finalEnding.setAttribute('aria-hidden','true');}
+  clearEndingTimers();
   void page.offsetWidth;
   page.classList.add('red-impact');
   setTimeout(()=>{
@@ -191,5 +246,5 @@ video.onended=()=>{
 };
 
 if('serviceWorker' in navigator){
-  window.addEventListener('load',()=>navigator.serviceWorker.register('./service-worker.js?v=36').catch(()=>{}));
+  window.addEventListener('load',()=>navigator.serviceWorker.register('./service-worker.js?v=37').catch(()=>{}));
 }
