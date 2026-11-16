@@ -169,9 +169,25 @@ function startPostVideoSequence(){
   setTimeout(()=>{
     page.classList.add('birthday-mode');
     reveal.classList.add('reveal-show');
+    const title=reveal.querySelector('.birthday-reveal-title');
+    if(title){
+      let delay=0;
+      title.querySelectorAll('.title-line').forEach(line=>{
+        const value=line.textContent;
+        line.textContent='';
+        [...value].forEach(char=>{
+          const letter=document.createElement('span');
+          letter.className='letter-pop';
+          letter.textContent=char;
+          letter.style.animationDelay=(delay*0.075)+'s';
+          line.appendChild(letter);
+          delay++;
+        });
+      });
+    }
   },2350);
-  setTimeout(()=>reveal.classList.add('cake-drop'),3600);
-  setTimeout(()=>prompt.classList.add('prompt-show'),6900);
+  setTimeout(()=>reveal.classList.add('cake-drop'),4700);
+  setTimeout(()=>prompt.classList.add('prompt-show'),8000);
 }
 video.onended=()=>{
   video.pause();
