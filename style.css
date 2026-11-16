@@ -352,3 +352,41 @@
 @media(prefers-reduced-motion:reduce){
   #page2 .white-leaf-fall i{animation:none!important;opacity:.35}
 }
+
+
+/* PAGE 3: user's uploaded image with a softly blurred background layer only */
+#page3{
+  position:absolute;
+  isolation:isolate;
+  background:#08040b!important;
+}
+#page3:before{
+  content:"";
+  display:block!important;
+  position:absolute;
+  inset:-7px;
+  z-index:0!important;
+  pointer-events:none;
+  background-image:
+    linear-gradient(rgba(0,0,0,.34),rgba(0,0,0,.34)),
+    url("birthday%203.jpg");
+  background-size:cover;
+  background-position:center center;
+  background-repeat:no-repeat;
+  filter:blur(3px);
+  transform:scale(1.015);
+}
+#page3 .starfield{z-index:1;opacity:.32}
+#page3 .message-scroll{
+  position:relative;
+  z-index:3!important;
+  background:rgba(0,0,0,.12);
+  border-radius:18px;
+  backdrop-filter:blur(0px);
+  -webkit-backdrop-filter:blur(0px);
+}
+#page3 .message-text{
+  color:#fff;
+  text-shadow:0 2px 5px rgba(0,0,0,.9),0 0 12px rgba(0,0,0,.75);
+}
+#page3 .message-text b{color:#fff;text-shadow:0 2px 6px rgba(0,0,0,.95)}
