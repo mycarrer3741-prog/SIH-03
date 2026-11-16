@@ -270,3 +270,85 @@
 @media(max-width:700px){
   #page1,#page1:before{background-size:cover!important}
 }
+
+
+/* PAGE 2: crimson star background, floating hearts, white tree and drifting white leaves */
+#page2,
+#page2:before{
+  background-image:url("birthday%202.png")!important;
+  background-size:100% 100%!important;
+  background-position:center center!important;
+  background-repeat:no-repeat!important;
+  background-color:#090006!important;
+}
+#page2:before{z-index:-2!important;background-color:transparent!important}
+#page2 .scroll-wrap{z-index:4}
+#page2 .hearts{z-index:2}
+#page2 .hearts span{
+  background:#ff4c9a;
+  filter:drop-shadow(0 0 8px rgba(255,55,145,.9));
+}
+#page2 .hearts span:before,
+#page2 .hearts span:after{background:#ff4c9a}
+#page2 .heart-tree{
+  z-index:3;
+  opacity:1;
+  filter:drop-shadow(0 0 12px rgba(255,255,255,.28));
+}
+#page2 .tree-crown{
+  background:radial-gradient(ellipse at 50% 48%,rgba(255,255,255,.24),rgba(255,255,255,.08) 65%,transparent 72%);
+}
+#page2 .tree-crown i{
+  color:#fff!important;
+  text-shadow:0 0 7px rgba(255,255,255,.9),0 0 16px rgba(255,255,255,.48)!important;
+}
+#page2 .tree-trunk{
+  background:linear-gradient(90deg,#bfc3d0,#fff,#c9cbd5)!important;
+  filter:drop-shadow(0 0 7px rgba(255,255,255,.55));
+}
+#page2 .white-leaf-fall{
+  position:absolute;
+  left:82px;
+  top:150px;
+  width:170px;
+  height:245px;
+  overflow:visible;
+  pointer-events:none;
+}
+#page2 .white-leaf-fall i{
+  position:absolute;
+  left:50%;
+  top:18%;
+  width:10px;
+  height:17px;
+  border-radius:90% 8% 90% 8%;
+  background:linear-gradient(135deg,#fff 0%,#f5f4ff 58%,#cfd3e2 100%);
+  box-shadow:0 0 9px rgba(255,255,255,.8);
+  opacity:0;
+  animation:whiteLeafDrift 7s ease-in-out infinite;
+}
+#page2 .white-leaf-fall i:nth-child(1){left:10%;animation-delay:-1s;animation-duration:7.5s}
+#page2 .white-leaf-fall i:nth-child(2){left:28%;animation-delay:-5s;animation-duration:8.2s}
+#page2 .white-leaf-fall i:nth-child(3){left:48%;animation-delay:-2.5s;animation-duration:6.8s}
+#page2 .white-leaf-fall i:nth-child(4){left:68%;animation-delay:-6s;animation-duration:8.5s}
+#page2 .white-leaf-fall i:nth-child(5){left:88%;animation-delay:-3.5s;animation-duration:7.2s}
+#page2 .white-leaf-fall i:nth-child(6){left:18%;animation-delay:-4s;animation-duration:9s}
+#page2 .white-leaf-fall i:nth-child(7){left:38%;animation-delay:-7s;animation-duration:7.8s}
+#page2 .white-leaf-fall i:nth-child(8){left:58%;animation-delay:-1.8s;animation-duration:8.8s}
+#page2 .white-leaf-fall i:nth-child(9){left:78%;animation-delay:-5.2s;animation-duration:7s}
+#page2 .white-leaf-fall i:nth-child(10){left:4%;animation-delay:-2.8s;animation-duration:8.4s}
+#page2 .white-leaf-fall i:nth-child(11){left:98%;animation-delay:-6.5s;animation-duration:7.6s}
+#page2 .white-leaf-fall i:nth-child(12){left:50%;animation-delay:-4.8s;animation-duration:9.2s}
+@keyframes whiteLeafDrift{
+  0%{transform:translate3d(0,-10px,0) rotate(0deg) scale(.7);opacity:0}
+  12%{opacity:.95}
+  55%{transform:translate3d(65px,95px,0) rotate(210deg) scale(1);opacity:.9}
+  100%{transform:translate3d(145px,245px,0) rotate(430deg) scale(.65);opacity:0}
+}
+@media(max-width:560px){
+  #page2 .heart-tree{display:block;left:-82px;bottom:4vh;transform:scale(.62);transform-origin:bottom left;opacity:.9}
+  #page2 .paper{width:86vw}
+}
+@media(prefers-reduced-motion:reduce){
+  #page2 .white-leaf-fall i{animation:none!important;opacity:.35}
+}
