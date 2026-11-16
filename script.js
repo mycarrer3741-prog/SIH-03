@@ -173,20 +173,10 @@ function startPostVideoSequence(){
   setTimeout(()=>reveal.classList.add('cake-drop'),3600);
   setTimeout(()=>prompt.classList.add('prompt-show'),6900);
 }
-function skipVideo(){
-  if(!video || video.dataset.transitioning==="yes")return;
-  video.dataset.transitioning="yes";
-  video.pause();
-  video.currentTime=0;
-  startPostVideoSequence();
-}
 video.onended=()=>{
-  video.dataset.transitioning="yes";
   video.pause();
   startPostVideoSequence();
 };
-const skipVideoBtn=$('#skipVideoBtn');
-if(skipVideoBtn)skipVideoBtn.addEventListener('click',skipVideo);
 
 if('serviceWorker' in navigator){
   window.addEventListener('load',()=>navigator.serviceWorker.register('./service-worker.js?v=13').catch(()=>{}));
