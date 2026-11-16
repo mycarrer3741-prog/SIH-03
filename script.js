@@ -153,19 +153,15 @@ $('#messageNextBtn').onclick=()=>{
 
 function startPostVideoSequence(){
   const page=$('#page5');
-  const scene=$('#arrowHeartScene');
   const reveal=$('#birthdayReveal');
   const prompt=$('#touchCakePrompt');
-  if(!page||!scene||!reveal||!prompt)return;
+  if(!page||!reveal||!prompt)return;
   show(4);
   page.classList.remove('red-impact','birthday-mode');
-  scene.classList.remove('shoot-arrow','heart-break');
   reveal.classList.remove('reveal-show','cake-drop');
   prompt.classList.remove('prompt-show');
   void page.offsetWidth;
   page.classList.add('red-impact');
-  scene.classList.add('shoot-arrow');
-  setTimeout(()=>scene.classList.add('heart-break'),1350);
   setTimeout(()=>{
     page.classList.add('birthday-mode');
     reveal.classList.add('reveal-show');
@@ -185,9 +181,9 @@ function startPostVideoSequence(){
         });
       });
     }
-  },2350);
-  setTimeout(()=>reveal.classList.add('cake-drop'),4700);
-  setTimeout(()=>prompt.classList.add('prompt-show'),8000);
+  },450);
+  setTimeout(()=>reveal.classList.add('cake-drop'),2800);
+  setTimeout(()=>prompt.classList.add('prompt-show'),6100);
 }
 video.onended=()=>{
   video.pause();
@@ -195,5 +191,5 @@ video.onended=()=>{
 };
 
 if('serviceWorker' in navigator){
-  window.addEventListener('load',()=>navigator.serviceWorker.register('./service-worker.js?v=35').catch(()=>{}));
+  window.addEventListener('load',()=>navigator.serviceWorker.register('./service-worker.js?v=36').catch(()=>{}));
 }
