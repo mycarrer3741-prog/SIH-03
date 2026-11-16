@@ -381,3 +381,61 @@
 #page3 .message-scroll{position:relative;z-index:3!important;background:rgba(0,0,0,.10)!important;border-radius:18px}
 #page3 .message-text{color:#fff!important;text-shadow:0 2px 5px rgba(0,0,0,.98),0 0 12px rgba(0,0,0,.85)}
 #page3 .message-text b{color:#fff!important;text-shadow:0 2px 6px rgba(0,0,0,.98)}
+
+
+/* POST-VIDEO SURPRISE: arrow hits heart, red heartbreak transition, birthday and falling cake */
+#page5{position:absolute;overflow:hidden;background:#080006!important;color:#fff}
+#page5:before{display:none!important}
+#page5 .post-video-show{position:absolute;inset:0;overflow:hidden;background:#080006;isolation:isolate}
+#page5.red-impact .post-video-show{animation:redImpact .9s ease forwards}
+#page5 .arrow-heart-scene{position:absolute;inset:0;z-index:3;opacity:1}
+#page5 .slingshot{position:absolute;left:17%;top:52%;width:62px;height:76px;border-left:5px solid #d9c5a1;border-radius:50% 0 0 50%;transform:rotate(-18deg)}
+#page5 .slingshot:before,#page5 .slingshot:after{content:"";position:absolute;width:4px;height:54px;background:#d9c5a1;left:43px;top:-4px;transform-origin:top;transform:rotate(-38deg)}
+#page5 .slingshot:after{transform:rotate(38deg)}
+#page5 .slingshot span{position:absolute;width:2px;height:60px;background:#d9c5a1;left:43px;top:-3px;transform:rotate(0deg)}
+#page5 .slingshot i{position:absolute;width:8px;height:8px;border-radius:50%;background:#b58a60;left:39px;top:49px}
+#page5 .target-heart{position:absolute;left:50%;top:43%;transform:translate(-50%,-50%);font-size:clamp(90px,18vw,170px);color:#ff4968;text-shadow:0 0 25px #ff234c,0 0 70px rgba(255,0,55,.8);animation:heartBeat 1.2s ease-in-out infinite}
+#page5 .flying-arrow{position:absolute;left:23%;top:52%;width:clamp(95px,15vw,150px);height:5px;background:linear-gradient(90deg,#9c7448,#f7e4b4);transform:rotate(-20deg);transform-origin:left center;opacity:0;z-index:5}
+#page5 .flying-arrow:before{content:"";position:absolute;right:-2px;top:-7px;border-left:17px solid #e8d7b4;border-top:9px solid transparent;border-bottom:9px solid transparent}
+#page5 .flying-arrow:after{content:"";position:absolute;left:0;top:-7px;width:17px;height:17px;border-left:3px solid #e8d7b4;border-top:3px solid #e8d7b4;transform:rotate(-45deg)}
+#page5 .broken-heart{position:absolute;left:50%;top:43%;width:180px;height:150px;transform:translate(-50%,-50%);display:flex;justify-content:center;gap:0;opacity:0;color:#ff3559;font-size:clamp(80px,16vw,150px);text-shadow:0 0 24px #ff123d}
+#page5 .broken-heart i{font-style:normal;display:block}
+#page5 .broken-heart i:first-child{transform:rotate(-18deg)}
+#page5 .broken-heart i:last-child{transform:rotate(18deg)}
+#page5 .shoot-arrow .flying-arrow{animation:arrowStrike 1.05s cubic-bezier(.2,.7,.25,1) forwards}
+#page5 .heart-break .target-heart{animation:heartShatter .75s ease forwards}
+#page5 .heart-break .broken-heart{opacity:1;animation:heartPieces 1.1s ease forwards}
+#page5 .birthday-reveal{position:absolute;inset:0;z-index:4;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;opacity:0;visibility:hidden;background:radial-gradient(ellipse at 50% 45%,#ff5068 0%,#ef173b 58%,#b90028 100%);overflow:hidden}
+#page5.birthday-mode .post-video-show{background:#e20e32}
+#page5 .birthday-reveal.reveal-show{visibility:visible;animation:revealFlash .85s ease forwards}
+#page5 .birthday-reveal-title{margin-top:clamp(35px,8vh,90px);font-family:Georgia,serif;font-weight:900;text-align:center;line-height:.88;letter-spacing:-2px;font-size:clamp(48px,10vw,125px);color:#fff0d5;text-shadow:0 5px 0 rgba(110,0,20,.28),0 0 28px rgba(255,255,255,.3);animation:titleFlash 1.2s ease-in-out 2}
+#page5 .birthday-reveal-title strong{display:inline-block;font-size:1.12em;letter-spacing:2px}
+#page5 .falling-cake{position:absolute;top:46%;left:50%;width:min(340px,72vw);height:clamp(210px,32vh,310px);transform:translateX(-50%);opacity:0}
+#page5 .cake-layer{position:absolute;left:50%;width:100%;height:62px;transform:translate(-50%,-160vh);border-radius:13px 13px 20px 20px;background:linear-gradient(90deg,#8d3b32,#f5c6a2 18%,#fff0d5 50%,#eaa58e 85%,#74302e);border:3px solid rgba(255,245,220,.85);box-shadow:0 10px 18px rgba(80,0,15,.3),inset 0 8px 0 rgba(255,255,255,.35)}
+#page5 .cake-layer:before{content:"";position:absolute;left:-4px;right:-4px;top:-11px;height:20px;border-radius:50%;background:#fff0dc;border:2px solid #f4c6b0}
+#page5 .cake-layer span{position:absolute;left:12%;right:12%;top:24px;height:5px;border-radius:50%;background:#b94a54;box-shadow:0 0 0 2px rgba(255,255,255,.22)}
+#page5 .layer-bottom{bottom:8px;width:100%}
+#page5 .layer-middle{bottom:70px;width:83%}
+#page5 .layer-top{bottom:132px;width:65%}
+#page5 .cake-candle{position:absolute;left:50%;bottom:194px;width:17px;height:65px;transform:translate(-50%,-170vh);border-radius:5px;background:repeating-linear-gradient(135deg,#fff 0 8px,#ffcfdf 8px 15px);box-shadow:0 0 8px rgba(255,255,255,.4)}
+#page5 .cake-candle i{position:absolute;left:3px;top:-20px;width:12px;height:20px;background:radial-gradient(ellipse at 50% 70%,#fff8a8 0 15%,#ffb52e 45%,#ff5428 75%,transparent 78%);border-radius:50% 50% 45% 45%;filter:drop-shadow(0 0 9px #ffb52e)}
+#page5 .cake-drop{opacity:1}
+#page5 .cake-drop .layer-bottom{animation:dropLayer .8s cubic-bezier(.2,.8,.25,1) .05s forwards}
+#page5 .cake-drop .layer-middle{animation:dropLayer .8s cubic-bezier(.2,.8,.25,1) .85s forwards}
+#page5 .cake-drop .layer-top{animation:dropLayer .8s cubic-bezier(.2,.8,.25,1) 1.65s forwards}
+#page5 .cake-drop .cake-candle{animation:dropCandle .75s cubic-bezier(.2,.8,.25,1) 2.5s forwards}
+#page5 .touch-cake-prompt{position:absolute;bottom:5.5%;left:50%;transform:translate(-50%,20px);white-space:nowrap;font-family:Arial,sans-serif;font-size:clamp(17px,3.5vw,28px);font-weight:900;letter-spacing:3px;color:#fff5dc;text-shadow:0 3px 12px rgba(90,0,15,.8);opacity:0}
+#page5 .prompt-show{animation:promptCake 1s ease forwards,promptPulse 1.3s ease-in-out 1s infinite}
+@keyframes arrowStrike{0%{opacity:1;transform:translate(0,0) rotate(-20deg)}75%{opacity:1;transform:translate(48vw,-10vh) rotate(-20deg)}100%{opacity:0;transform:translate(53vw,-11vh) rotate(-20deg)}}
+@keyframes heartBeat{50%{transform:translate(-50%,-50%) scale(1.1)}}
+@keyframes heartShatter{to{opacity:0;transform:translate(-50%,-50%) scale(1.7) rotate(18deg);filter:blur(8px)}}
+@keyframes heartPieces{to{opacity:0;transform:translate(-50%,-50%) scale(1.35) rotate(-10deg);clip-path:polygon(0 0,100% 0,100% 100%,0 100%)}}
+@keyframes redImpact{0%{background:#080006}100%{background:#ed1237}}
+@keyframes revealFlash{0%{opacity:0;filter:brightness(2.4)}45%{opacity:1;filter:brightness(1.5)}100%{opacity:1;filter:brightness(1)}}
+@keyframes titleFlash{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.72;transform:scale(1.035)}}
+@keyframes dropLayer{0%{transform:translate(-50%,-160vh) rotate(-7deg)}72%{transform:translate(-50%,8px) rotate(2deg)}86%{transform:translate(-50%,-5px) rotate(-1deg)}100%{transform:translate(-50%,0) rotate(0)}}
+@keyframes dropCandle{0%{transform:translate(-50%,-170vh) rotate(8deg)}75%{transform:translate(-50%,7px) rotate(-2deg)}100%{transform:translate(-50%,0) rotate(0)}}
+@keyframes promptCake{to{opacity:1;transform:translate(-50%,0)}}
+@keyframes promptPulse{50%{text-shadow:0 0 22px #fff,0 0 35px #ffb2bd}}
+@media(max-width:600px){#page5 .birthday-reveal-title{margin-top:8vh}#page5 .falling-cake{top:48%;width:76vw}#page5 .touch-cake-prompt{bottom:7%}}
+@media(prefers-reduced-motion:reduce){#page5 *{animation-duration:.01ms!important;animation-iteration-count:1!important}}
