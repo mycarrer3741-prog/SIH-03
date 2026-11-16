@@ -36,6 +36,25 @@ function makeConfetti(){
   box.classList.add('burst');
 }
 
+function makeEndingConfetti(){
+  const layer=$('#endingConfetti');
+  if(!layer || layer.childElementCount)return;
+  const colors=['#ffd166','#ff6b8a','#fff1c7','#b9a0ff','#ff9f43','#ffffff'];
+  for(let i=0;i<90;i++){
+    const piece=document.createElement('i');
+    piece.className='ending-confetti-piece';
+    piece.style.left=(Math.random()*100)+'%';
+    piece.style.background=colors[i%colors.length];
+    piece.style.setProperty('--fall',(5+Math.random()*7)+'s');
+    piece.style.setProperty('--delay',(Math.random()*2.5)+'s');
+    piece.style.setProperty('--drift',((Math.random()-.5)*180)+'px');
+    piece.style.setProperty('--rotation',Math.round(Math.random()*180)+'deg');
+    piece.style.width=(5+Math.random()*7)+'px';
+    piece.style.height=(9+Math.random()*12)+'px';
+    layer.appendChild(piece);
+  }
+}
+
 function startIntro(){
   if(introStarted)return;
   const tap=$('#tapToStart');
@@ -156,5 +175,5 @@ rajarani2.addEventListener('ended',()=>{
 $('#musicFallback').addEventListener('click',()=>playAudio(rajarani2).then(()=>{$('#musicFallback').style.display='none';}).catch(()=>{$('#musicFallback').style.display='block';}));
 
 if('serviceWorker' in navigator){
-  window.addEventListener('load',()=>navigator.serviceWorker.register('./service-worker.js?v=12').catch(()=>{}));
+  window.addEventListener('load',()=>navigator.serviceWorker.register('./service-worker.js?v=13').catch(()=>{}));
 }
