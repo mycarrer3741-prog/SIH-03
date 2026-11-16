@@ -644,3 +644,6 @@
   }
   #page5 .target-heart{left:56%!important;top:43%!important}
 }
+
+#page4 #skipVideoBtn{position:absolute;z-index:20;top:max(18px,env(safe-area-inset-top));right:max(18px,env(safe-area-inset-right));padding:11px 17px;border:1px solid rgba(255,255,255,.75);border-radius:999px;color:#fff;background:rgba(18,10,35,.72);font:700 13px/1.1 Arial,sans-serif;letter-spacing:1px;cursor:pointer;box-shadow:0 3px 18px rgba(0,0,0,.28);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+#page4 #skipVideoBtn:active{transform:scale(.96);background:rgba(180,30,70,.9)}
