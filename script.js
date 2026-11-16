@@ -151,28 +151,32 @@ $('#messageNextBtn').onclick=()=>{
   },1000);
 };
 
-video.onended=()=>{
+function startPostVideoSequence(){
+  const page=$('#page5');
+  const scene=$('#arrowHeartScene');
+  const reveal=$('#birthdayReveal');
+  const prompt=$('#touchCakePrompt');
+  if(!page||!scene||!reveal||!prompt)return;
   show(4);
-  const miss=$('#miss'), finalWish=$('#finalWish'), lastMessage=$('#lastMessage'), shutter=$('#endingShutter'), musicFallback=$('#musicFallback');
-  miss.style.display='none';
-  finalWish.style.display='none';
-  $('#byeText').style.display='none';
-  shutter.classList.remove('shutter-close');
-  lastMessage.style.display='block';
-  requestAnimationFrame(()=>lastMessage.classList.add('last-message-show'));
-  musicFallback.style.display='none';
-  rajarani2.currentTime=0;
-  playAudio(rajarani2).then(()=>{musicFallback.style.display='none';}).catch(()=>{musicFallback.style.display='block';});
-  // Keep the ending screen open for the entire Rajarani2 track.
-  // The shutter closes only after the song finishes (or after a manual retry plays it).
+  page.classList.remove('red-impact','birthday-mode');
+  scene.classList.remove('shoot-arrow','heart-break');
+  reveal.classList.remove('reveal-show','cake-drop');
+  prompt.classList.remove('prompt-show');
+  void page.offsetWidth;
+  page.classList.add('red-impact');
+  scene.classList.add('shoot-arrow');
+  setTimeout(()=>scene.classList.add('heart-break'),1350);
+  setTimeout(()=>{
+    page.classList.add('birthday-mode');
+    reveal.classList.add('reveal-show');
+  },2350);
+  setTimeout(()=>reveal.classList.add('cake-drop'),3600);
+  setTimeout(()=>prompt.classList.add('prompt-show'),6900);
+}
+video.onended=()=>{
+  video.pause();
+  startPostVideoSequence();
 };
-
-rajarani2.addEventListener('ended',()=>{
-  $('#musicFallback').style.display='none';
-  $('#endingShutter').classList.add('shutter-close');
-});
-
-$('#musicFallback').addEventListener('click',()=>playAudio(rajarani2).then(()=>{$('#musicFallback').style.display='none';}).catch(()=>{$('#musicFallback').style.display='block';}));
 
 if('serviceWorker' in navigator){
   window.addEventListener('load',()=>navigator.serviceWorker.register('./service-worker.js?v=13').catch(()=>{}));
