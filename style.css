@@ -798,6 +798,7 @@
 #page5 .final-ending .hearts span,#page5 .final-ending .hearts span:before,#page5 .final-ending .hearts span:after{background:#ff4384!important;filter:drop-shadow(0 0 7px rgba(255,67,132,.45))}
 #page5 #lastMessage{display:none;position:absolute;z-index:4;left:50%;top:50%;transform:translate(-50%,-50%);width:min(1100px,92vw);max-height:82%;overflow:auto;padding:clamp(20px,4vw,42px);text-align:center;font-family:Georgia,'Times New Roman',serif;font-weight:900;font-size:clamp(1.45rem,3.7vw,3.7rem);line-height:1.35;color:#f00026;-webkit-text-stroke:1.5px #000;text-shadow:3px 3px 0 #000,-2px -2px 0 #000,0 0 16px rgba(240,0,38,.3);opacity:0}
 #page5 #lastMessage.last-message-show{display:block;animation:lastMessageIn 1.2s ease-out forwards}
+@keyframes lastMessageIn{from{opacity:0;transform:translate(-50%,-50%) scale(.92)}to{opacity:1;transform:translate(-50%,-50%) scale(1)}}
 #page5 #musicFallback{display:none;position:absolute;z-index:12;left:50%;bottom:max(22px,env(safe-area-inset-bottom));transform:translateX(-50%);max-width:92vw;padding:14px 22px;border:2px solid #c4003b;border-radius:999px;background:#fff;color:#9e0030;font:800 14px/1.2 Arial,sans-serif;letter-spacing:1px;box-shadow:0 4px 20px rgba(0,0,0,.2);touch-action:manipulation;cursor:pointer}
 #page5 #musicFallback.show{display:block}
 #page5 #endingShutter{position:absolute;inset:0;z-index:20;display:none;background:#fff;pointer-events:none}
