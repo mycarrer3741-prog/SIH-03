@@ -1,4 +1,4 @@
-const CACHE='mithra-birthday-v17';
+const CACHE='mithra-birthday-v18';
 const ASSETS=['./','./index.html','./style.css?v=28','./script.js?v=28','./manifest.json','./birthday.mp3?v=2','./rajarani.mp3?v=2','./rajarani2.mp3?v=2','./break 1.mp4','./DC.mp3'];
 self.addEventListener('install',e=>{e.waitUntil(caches.open(CACHE).then(c=>c.addAll(ASSETS).catch(()=>{})).then(()=>self.skipWaiting()))});
 self.addEventListener('activate',e=>{e.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k!==CACHE).map(k=>caches.delete(k)))).then(()=>self.clients.claim()))});
