@@ -645,3 +645,20 @@
   #page5 .target-heart{left:56%!important;top:43%!important}
 }
 
+
+
+/* Fine-tune post-video surprise layout and heart impact */
+#page5 .bow-arrow-art{top:29%!important}
+#page5 .target-heart{color:#f20d2d!important;-webkit-text-stroke:3px #fff!important;paint-order:stroke fill;text-shadow:0 0 18px rgba(255,0,40,.7),0 0 42px rgba(255,0,40,.42)!important}
+#page5 .broken-heart{color:#f20d2d!important;-webkit-text-stroke:3px #fff!important;text-shadow:0 0 18px rgba(255,0,40,.65)!important}
+#page5 .broken-heart i:first-child{clip-path:polygon(0 0,100% 0,47% 48%,52% 100%,0 100%);transform:translateX(-5px) rotate(-8deg)!important}
+#page5 .broken-heart i:last-child{clip-path:polygon(0 0,100% 0,100% 100%,48% 100%,53% 48%);transform:translateX(5px) rotate(8deg)!important}
+#page5 .heart-break .broken-heart i:first-child{animation:heartHalfLeft .9s ease-out forwards}
+#page5 .heart-break .broken-heart i:last-child{animation:heartHalfRight .9s ease-out forwards}
+#page5 .birthday-reveal-title .title-line{display:block;white-space:nowrap}
+#page5 .birthday-reveal-title .letter-pop{display:inline-block;white-space:pre;opacity:0;transform:translateY(24px) scale(.72);animation:letterPop .42s cubic-bezier(.2,.85,.25,1.25) forwards}
+#page5 .birthday-reveal-title .gold-underline{display:block}
+@keyframes letterPop{0%{opacity:0;transform:translateY(24px) scale(.72);filter:blur(5px)}75%{opacity:1;transform:translateY(-4px) scale(1.08);filter:blur(0)}100%{opacity:1;transform:translateY(0) scale(1);filter:blur(0)}}
+@keyframes heartHalfLeft{to{transform:translate(-32px,10px) rotate(-24deg);opacity:0}}
+@keyframes heartHalfRight{to{transform:translate(32px,10px) rotate(24deg);opacity:0}}
+@media(max-width:600px){#page5 .bow-arrow-art{top:31%!important}#page5 .target-heart{-webkit-text-stroke:2.5px #fff!important}}
