@@ -426,7 +426,7 @@
 #page5 .cake-drop .cake-candle{animation:dropCandle .75s cubic-bezier(.2,.8,.25,1) 2.5s forwards}
 #page5 .touch-cake-prompt{position:absolute;bottom:5.5%;left:50%;transform:translate(-50%,20px);white-space:nowrap;font-family:Arial,sans-serif;font-size:clamp(17px,3.5vw,28px);font-weight:900;letter-spacing:3px;color:#fff5dc;text-shadow:0 3px 12px rgba(90,0,15,.8);opacity:0}
 #page5 .prompt-show{animation:promptCake 1s ease forwards,promptPulse 1.3s ease-in-out 1s infinite}
-@keyframes arrowStrike{0%{opacity:1;transform:translate(0,0) rotate(-20deg)}75%{opacity:1;transform:translate(48vw,-10vh) rotate(-20deg)}100%{opacity:0;transform:translate(53vw,-11vh) rotate(-20deg)}}
+@keyframes arrowStrike{0%{opacity:1;transform:translate(0,0) rotate(-20deg)}75%{opacity:1;transform:translate(27vw,-10vh) rotate(-20deg)}100%{opacity:0;transform:translate(30vw,-11vh) rotate(-20deg)}}
 @keyframes heartBeat{50%{transform:translate(-50%,-50%) scale(1.1)}}
 @keyframes heartShatter{to{opacity:0;transform:translate(-50%,-50%) scale(1.7) rotate(18deg);filter:blur(8px)}}
 @keyframes heartPieces{to{opacity:0;transform:translate(-50%,-50%) scale(1.35) rotate(-10deg);clip-path:polygon(0 0,100% 0,100% 100%,0 100%)}}
@@ -439,3 +439,5 @@
 @keyframes promptPulse{50%{text-shadow:0 0 22px #fff,0 0 35px #ffb2bd}}
 @media(max-width:600px){#page5 .birthday-reveal-title{margin-top:8vh}#page5 .falling-cake{top:48%;width:76vw}#page5 .touch-cake-prompt{bottom:7%}}
 @media(prefers-reduced-motion:reduce){#page5 *{animation-duration:.01ms!important;animation-iteration-count:1!important}}
+
+#page5 .cake-drop .falling-cake{opacity:1}
