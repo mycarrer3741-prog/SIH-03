@@ -503,3 +503,107 @@
   #page5 .birthday-reveal-title{font-size:clamp(43px,12vw,70px)!important;line-height:.84!important}
   #page5 .falling-cake{top:60%!important;width:72vw!important}
 }
+
+
+/* Refined bow-and-arrow scene: a clear curved bow, taut string and straight shot into the heart */
+#page5 .slingshot{
+  position:absolute;
+  left:14%;
+  top:34%;
+  width:58px;
+  height:190px;
+  border:0!important;
+  border-right:6px solid #e8d6b6!important;
+  border-radius:0 100% 100% 0!important;
+  transform:rotate(-2deg)!important;
+  filter:drop-shadow(0 0 5px rgba(255,235,195,.3));
+  z-index:4;
+}
+#page5 .slingshot:before,
+#page5 .slingshot:after{
+  content:"";
+  position:absolute;
+  left:43px;
+  top:2px;
+  width:2px;
+  height:184px;
+  background:linear-gradient(#f6e7cb,#c7a77a);
+  transform:none!important;
+  transform-origin:center;
+}
+#page5 .slingshot:after{
+  left:28px;
+  top:83px;
+  width:18px;
+  height:2px;
+  transform:rotate(-8deg)!important;
+  background:#f4dfbd;
+}
+#page5 .slingshot span{
+  position:absolute;
+  left:43px;
+  top:0;
+  width:2px;
+  height:185px;
+  background:rgba(255,242,215,.88);
+  transform:none!important;
+}
+#page5 .slingshot i{
+  position:absolute;
+  left:24px;
+  top:84px;
+  width:9px;
+  height:9px;
+  border-radius:50%;
+  background:#f4dfbd;
+  box-shadow:0 0 8px rgba(255,235,190,.8);
+}
+#page5 .flying-arrow{
+  left:17.5%!important;
+  top:43%!important;
+  width:clamp(125px,32vw,360px)!important;
+  height:4px!important;
+  border-radius:4px;
+  background:linear-gradient(90deg,#b58b58 0%,#f7e7c7 45%,#fff5dc 100%)!important;
+  transform:rotate(0deg)!important;
+  transform-origin:left center!important;
+  box-shadow:0 0 7px rgba(255,235,195,.65);
+}
+#page5 .flying-arrow:before{
+  right:-1px!important;
+  top:-8px!important;
+  border-left:20px solid #f5e5c6!important;
+  border-top:10px solid transparent!important;
+  border-bottom:10px solid transparent!important;
+}
+#page5 .flying-arrow:after{
+  left:0!important;
+  top:-8px!important;
+  width:19px!important;
+  height:18px!important;
+  border-left:3px solid #e9d1a9!important;
+  border-top:3px solid #e9d1a9!important;
+  transform:rotate(-45deg)!important;
+}
+#page5 .shoot-arrow .flying-arrow{
+  animation:arrowStrikeRefined 1.12s cubic-bezier(.18,.78,.2,1) forwards!important;
+}
+@keyframes arrowStrikeRefined{
+  0%{opacity:0;transform:translate(0,0) rotate(0deg) scale(.92)}
+  8%{opacity:1}
+  82%{opacity:1;transform:translate(31vw,0) rotate(0deg) scale(1)}
+  100%{opacity:0;transform:translate(33vw,0) rotate(0deg) scale(.98)}
+}
+@media(max-width:600px){
+  #page5 .slingshot{left:8%;top:35%;height:150px;width:48px}
+  #page5 .slingshot:before,#page5 .slingshot span{height:145px}
+  #page5 .slingshot:after{top:65px;left:23px}
+  #page5 .slingshot i{top:65px;left:19px}
+  #page5 .flying-arrow{left:12%!important;top:43%!important;width:clamp(120px,40vw,220px)!important}
+  @keyframes arrowStrikeRefined{
+    0%{opacity:0;transform:translate(0,0) rotate(0deg) scale(.92)}
+    8%{opacity:1}
+    82%{opacity:1;transform:translate(33vw,0) rotate(0deg) scale(1)}
+    100%{opacity:0;transform:translate(35vw,0) rotate(0deg) scale(.98)}
+  }
+}
