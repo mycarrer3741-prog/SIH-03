@@ -355,28 +355,29 @@
 
 
 
-/* PAGE 3 FIX: visible image background with gentle backdrop blur */
+
+/* PAGE 3 BACKGROUND: force the uploaded photo onto the page's own background layer */
 #page3{
-  position:absolute;
-  isolation:isolate;
-  background-color:#08040b!important;
-  background-image:linear-gradient(rgba(0,0,0,.24),rgba(0,0,0,.24)),url("./birthday%203.jpg")!important;
-  background-size:cover!important;
-  background-position:center center!important;
-  background-repeat:no-repeat!important;
+  position:absolute!important;
+  isolation:isolate!important;
+  background:#08040b!important;
+  background-image:none!important;
 }
 #page3:before{
-  content:"";
+  content:""!important;
   display:block!important;
-  position:absolute;
-  inset:0;
+  position:absolute!important;
+  inset:-5px!important;
   z-index:0!important;
-  pointer-events:none;
-  background:rgba(8,4,16,.08);
-  -webkit-backdrop-filter:blur(2px);
-  backdrop-filter:blur(2px);
+  opacity:1!important;
+  pointer-events:none!important;
+  background:
+    linear-gradient(rgba(0,0,0,.20),rgba(0,0,0,.20)),
+    url("https://raw.githubusercontent.com/mycarrer3741-prog/SIH-03/main/birthday%203.jpg") center center / cover no-repeat!important;
+  filter:blur(2px)!important;
+  transform:scale(1.015);
 }
-#page3 .starfield{z-index:1;opacity:.22}
-#page3 .message-scroll{position:relative;z-index:3!important;background:rgba(0,0,0,.16);border-radius:18px}
-#page3 .message-text{color:#fff;text-shadow:0 2px 5px rgba(0,0,0,.95),0 0 12px rgba(0,0,0,.8)}
-#page3 .message-text b{color:#fff;text-shadow:0 2px 6px rgba(0,0,0,.98)}
+#page3 .starfield{position:absolute;inset:0;z-index:1!important;opacity:.12!important}
+#page3 .message-scroll{position:relative;z-index:3!important;background:rgba(0,0,0,.10)!important;border-radius:18px}
+#page3 .message-text{color:#fff!important;text-shadow:0 2px 5px rgba(0,0,0,.98),0 0 12px rgba(0,0,0,.85)}
+#page3 .message-text b{color:#fff!important;text-shadow:0 2px 6px rgba(0,0,0,.98)}
