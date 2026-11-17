@@ -860,3 +860,18 @@
   #page5 .touch-cake-prompt { bottom: 2% !important; }
   #page5 #lastMessage { max-height: 70%; font-size: clamp(1rem, 4vh, 1.6rem); }
 }
+
+
+/* v53: clean final-message typography — black fill, white outline, no shadow */
+#page5 #lastMessage{
+  color:#000000 !important;
+  -webkit-text-fill-color:#000000 !important;
+  -webkit-text-stroke:1.5px #ffffff !important;
+  text-shadow:none !important;
+}
+@media(max-width:480px){
+  #page5 #lastMessage{
+    -webkit-text-stroke:1px #ffffff !important;
+    text-shadow:none !important;
+  }
+}
