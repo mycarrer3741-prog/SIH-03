@@ -884,3 +884,9 @@
 #experienceDisclaimer button{border:2px solid #fff;border-radius:999px;padding:17px 42px;background:#fff;color:#000;font-size:clamp(1rem,2vw,1.35rem);font-weight:900;letter-spacing:2px;cursor:pointer;box-shadow:0 0 24px rgba(255,255,255,.18);}
 #experienceDisclaimer button:active{transform:scale(.97)}
 @media(max-width:480px){#experienceDisclaimer{padding:24px}#experienceDisclaimer p{font-size:clamp(1.8rem,8vw,2.7rem);line-height:1.4}#experienceDisclaimer button{padding:15px 30px}}
+
+
+/* v55: make the opening button's instruction clear but subtle */
+#experienceDisclaimer button{position:relative;margin-top:18px;}
+#experienceDisclaimer button::before{content:"PRESS HERE ↓";position:absolute;left:50%;bottom:calc(100% + 13px);transform:translateX(-50%);color:#fff;font:800 clamp(.72rem,1.4vw,.9rem)/1 Arial,Helvetica,sans-serif;letter-spacing:3px;white-space:nowrap;animation:pressHerePulse 1.25s ease-in-out infinite;}
+@keyframes pressHerePulse{0%,100%{opacity:.65;transform:translate(-50%,0)}50%{opacity:1;transform:translate(-50%,-4px)}}
