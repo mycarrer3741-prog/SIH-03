@@ -9,8 +9,8 @@ const show=n=>pages.forEach((p,i)=>p.classList.toggle('active',i===n));
 const birthday=$('#birthdayAudio'),rajarani=$('#rajaraniAudio'),rajarani2=$('#rajarani2Audio'),dc=$('#dcAudio'),video=$('#breakVideo');
 birthday.loop=true;birthday.autoplay=false;birthday.muted=false;rajarani.loop=true;rajarani2.loop=false;dc.loop=true;dc.volume=1;
 let introStarted=false,letterTimer=null;
-let disclaimerAccepted=false;
 const disclaimer=$("#experienceDisclaimer");
+let disclaimerAccepted=!disclaimer;
 $("#disclaimerGo")?.addEventListener("click",()=>{disclaimerAccepted=true;disclaimer?.remove();});
 
 function makeConfetti(){
@@ -59,7 +59,7 @@ function makeEndingConfetti(){
 }
 
 function startIntro(){
-  if(introStarted)return;
+  if(!disclaimerAccepted||introStarted)return;
   const tap=$('#tapToStart');
   birthday.currentTime=0;
   birthday.muted=false;
@@ -294,5 +294,5 @@ video.onended=()=>{
 };
 
 if('serviceWorker' in navigator){
-  window.addEventListener('load',()=>navigator.serviceWorker.register('./service-worker.js?v=43').catch(()=>{}));
+  window.addEventListener('load',()=>navigator.serviceWorker.register('./service-worker.js?v=44').catch(()=>{}));
 }
