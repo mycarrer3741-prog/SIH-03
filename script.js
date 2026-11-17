@@ -8,7 +8,7 @@ const pages=[...document.querySelectorAll('.page')];
 const show=n=>pages.forEach((p,i)=>p.classList.toggle('active',i===n));
 const birthday=$('#birthdayAudio'),rajarani=$('#rajaraniAudio'),rajarani2=$('#rajarani2Audio'),dc=$('#dcAudio'),video=$('#breakVideo');
 birthday.loop=true;birthday.autoplay=false;birthday.muted=false;rajarani.loop=true;rajarani2.loop=false;dc.loop=true;dc.volume=1;
-let introStarted=false,letterTimer=null;
+let introStarted=false,letterTimer=null;\nlet disclaimerAccepted=false;\nconst disclaimer=$("#experienceDisclaimer");\n$("#disclaimerGo")?.addEventListener("click",()=>{disclaimerAccepted=true;disclaimer?.remove();});
 
 function makeConfetti(){
   const box=$('#confettiLayer');
