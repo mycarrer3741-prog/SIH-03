@@ -875,3 +875,12 @@
     text-shadow:none !important;
   }
 }
+
+
+/* v54: opening experience note before the birthday page */
+#experienceDisclaimer{position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;padding:clamp(24px,6vw,80px);background:#000;color:#fff;text-align:center;font-family:Arial,Helvetica,sans-serif;}
+#experienceDisclaimer .disclaimer-content{width:min(100%,1050px);display:flex;flex-direction:column;align-items:center;gap:clamp(30px,6vh,64px);}
+#experienceDisclaimer p{margin:0;color:#fff;font-size:clamp(2rem,5vw,4.5rem);font-weight:800;line-height:1.35;letter-spacing:.02em;text-wrap:balance;}
+#experienceDisclaimer button{border:2px solid #fff;border-radius:999px;padding:17px 42px;background:#fff;color:#000;font-size:clamp(1rem,2vw,1.35rem);font-weight:900;letter-spacing:2px;cursor:pointer;box-shadow:0 0 24px rgba(255,255,255,.18);}
+#experienceDisclaimer button:active{transform:scale(.97)}
+@media(max-width:480px){#experienceDisclaimer{padding:24px}#experienceDisclaimer p{font-size:clamp(1.8rem,8vw,2.7rem);line-height:1.4}#experienceDisclaimer button{padding:15px 30px}}
